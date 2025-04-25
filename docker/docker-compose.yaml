@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - ./properties.json:/root/GVirtuS/etc/properties.json
+    ports:
+      - "9999:9999"
+    entrypoint: [ "/bin/bash", "-c", "/root/GVirtuS/bin/gvirtus-backend /root/GVirtuS/etc/properties.json" ]
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./properties.json:/root/GVirtuS/etc/properties.json
+    # entrypoint: sleep infinity # FOR DEBUGGING
+    entrypoint: [ "/bin/bash", "-c", "LD_PRELOAD=/root/GVirtuS/lib/frontend/libcudart.so ./cudart_example" ]
+    depends_on:
+      - backend
