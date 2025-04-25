@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: gvirtus-device-plugin
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: gvirtus-device-plugin
+  template:
+    metadata:
+      labels:
+        app: gvirtus-device-plugin
+    spec:
+      nodeSelector:
+        gvirtus-role: frontend
+      containers:
+      - name: plugin
+        image: taslanidis/gvirtus-device-plugin:latest
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: kubelet
+          mountPath: /var/lib/kubelet
+      volumes:
+      - name: kubelet
+        hostPath:
+          path: /var/lib/kubelet
