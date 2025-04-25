@@ -11,5 +11,8 @@ COPY ./properties.json ${GVIRTUS_HOME}/etc/
 COPY full_example.cu .
 RUN nvcc full_example.cu -L ${GVIRTUS_HOME}/lib -L ${GVIRTUS_HOME}/lib/frontend -lcublas -lcufft -lcudnn -lcurand -o full_example --cudart=shared
 RUN chmod +x full_example
+#RUN apt update && apt install python3 -y
+# DISABLE IF USING DOCKER COMPOSE
 ENTRYPOINT ["/bin/bash" , "-c"]
-CMD ["LD_PRELOAD=$(echo ${GVIRTUS_HOME}/lib/frontend/*.so | tr ' ' ':') ./full_example"]
+#CMD ["LD_PRELOAD=$(echo ${GVIRTUS_HOME}/lib/frontend/*.so | tr ' ' ':') ./full_example"]
+CMD ["./full_example"]
