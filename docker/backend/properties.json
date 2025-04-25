@@ -4,7 +4,7 @@
       "endpoint": {
         "suite": "tcp/ip",
         "protocol": "tcp",
-        "server_address": "172.20.0.2",
+        "server_address": "0.0.0.0",
         "port": "9999"
       },
       "plugins": [
