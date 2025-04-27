@@ -55,7 +55,7 @@ func (p *Plugin) GetPreferredAllocation(ctx context.Context, r *pluginapi.Prefer
 func (p *Plugin) ListAndWatch(e *pluginapi.Empty, r pluginapi.DevicePlugin_ListAndWatchServer) error {
 	devices := []*pluginapi.Device{
 		{
-			ID:     PluginName, // Generic GPU resource (no specific device ID)
+			ID:     "device_0",
 			Health: pluginapi.Healthy,
 		},
 	}
@@ -72,13 +72,14 @@ func (p *Plugin) ListAndWatch(e *pluginapi.Empty, r pluginapi.DevicePlugin_ListA
 // Allocate handles the allocation of GPUs to containers
 func (p *Plugin) Allocate(ctx context.Context, r *pluginapi.AllocateRequest) (*pluginapi.AllocateResponse, error) {
 	responses := &pluginapi.AllocateResponse{}
-	for range r.ContainerRequests {
+	for _, req := range r.ContainerRequests {
 		cdidevices := []*pluginapi.CDIDevice{}
-		// We no longer use device IDs. Just allocate a generic "gpu"
-		cdidevices = append(cdidevices, &pluginapi.CDIDevice{
-			Name: fmt.Sprintf("%s/%s", ResourceNamespace, PluginName),
-		})
 
+		for _, id := range req.DevicesIDs {
+			cdidevices = append(cdidevices, &pluginapi.CDIDevice{
+				Name: fmt.Sprintf("%s/%s=%s", ResourceNamespace, PluginName, id),
+			})
+		}
 		responses.ContainerResponses = append(responses.ContainerResponses, &pluginapi.ContainerAllocateResponse{
 			CDIDevices: cdidevices,
 		})
