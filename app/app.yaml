@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cuda-app-pod
+  namespace: lel
+spec:
+  restartPolicy: Never
+  containers:
+  - name: cuda-app-container
+    image: taslanidis/cuda-app
+    command: ["/bin/bash", "-c", "./cudart_example"]  # Change this based on your app path and executable
+    #resources:
+     # limits:
+     #   nvidia.com/gpu: 1  # Request 1 GPU for the container
+  nodeSelector:
+    gpu-virtualization: none

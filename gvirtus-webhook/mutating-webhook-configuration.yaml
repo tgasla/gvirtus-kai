@@ -1,0 +1,25 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: gvirtus-mutating-webhook
+webhooks:
+  - name: gvirtus-webhook.default.svc
+    clientConfig:
+      service:
+        name: gvirtus-webhook
+        namespace: default
+        path: /mutate
+        port: 443
+    rules:
+      - operations: ["CREATE"]
+        apiGroups: [""]
+        apiVersions: ["v1"]
+        resources: ["pods"]
+    admissionReviewVersions: ["v1"]
+    sideEffects: None
+    failurePolicy: Fail
+    namespaceSelector:
+      matchExpressions:
+        - key: skastos
+          operator: "In"
+          values: ["panta"]

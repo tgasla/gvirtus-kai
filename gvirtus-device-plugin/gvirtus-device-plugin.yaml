@@ -38,21 +38,21 @@ spec:
                 type: c
                 permissions: rw
               mounts:
-              - hostPath: /usr/local/gvirtus/lib/device_0.so
-                containerPath: /usr/local/gvirtus/lib/device_0.so
+              - hostPath: /opt/gvirtus/lib/device_0.so
+                containerPath: /opt/gvirtus/lib/device_0.so
                 options: ["ro", "nosuid", "nodev", "bind"]
           EOF
 
           # 2) Create the gvirtus character device
           mkdir -p /host/dev/gvirtus
-          rm -f /dev/gvirtus/device_0
-          mknod /dev/gvirtus/device_0 c 89 1
+          rm -f /host/dev/gvirtus/device_0
+          mknod /host/dev/gvirtus/device_0 c 89 1
           chmod 666 /host/dev/gvirtus/device_0
 
           # 3) Create the gvirtus device .so
-          mkdir -p /host/usr/local/gvirtus/lib
-          touch /host/usr/local/gvirtus/lib/device_0.so
-          chmod 644 /host/usr/local/gvirtus/lib/device_0.so
+          mkdir -p /host/opt/gvirtus/lib
+          touch /host/opt/gvirtus/lib/device_0.so
+          chmod 644 /host/opt/gvirtus/lib/device_0.so
         volumeMounts:
         - name: host-root
           mountPath: /host

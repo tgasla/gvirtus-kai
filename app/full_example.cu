@@ -1,3 +1,7 @@
+#include <iostream>
+#include <cublas_v2.h>
+#include <cufft.h>
+#include <curand_kernel.h>
 #include <cudnn.h>
 
 int main() {

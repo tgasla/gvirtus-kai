@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gvirtus-webhook
+  namespace: default
+  labels:
+    app: gvirtus-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gvirtus-webhook
+  template:
+    metadata:
+      labels:
+        app: gvirtus-webhook
+    spec:
+      containers:
+        - name: webhook-server
+          image: taslanidis/gvirtus-webhook:latest
+          ports:
+            - containerPort: 8443
