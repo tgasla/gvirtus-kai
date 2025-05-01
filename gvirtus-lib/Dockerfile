@@ -5,12 +5,4 @@ ENV GVIRTUS_HOME=/usr/local/gvirtus
 RUN mkdir gvirtus/build && cd gvirtus/build && cmake .. && make && make install
 ENV LD_LIBRARY_PATH=${GVIRTUS_HOME}/lib:${GVIRTUS_HOME}/lib/frontend:${LD_LIBRARY_PATH}
 ENV GVIRTUS_LOGLEVEL=0
-ENV EXTRA_NVCCFLAGS="--cudart=shared"
-ENV CUDA_VISIBLE_DEVICES=-1
-COPY ./properties.json ${GVIRTUS_HOME}/etc/
-COPY full_example.cu .
-RUN nvcc full_example.cu -L ${GVIRTUS_HOME}/lib -L ${GVIRTUS_HOME}/lib/frontend -lcublas -lcufft -lcudnn -lcurand -o full_example --cudart=shared
-RUN chmod +x full_example
-# DISABLE IF USING DOCKER COMPOSE
-ENTRYPOINT ["/bin/bash" , "-c"]
-CMD ["LD_PRELOAD=$(echo ${GVIRTUS_HOME}/lib/frontend/*.so | tr ' ' ':') ./full_example"]
+RUN sed -i 's/"server_address": "127.0.0.1"/"server_address": "0.0.0.0"/' ${GVIRTUS_HOME}/etc/properties.json
