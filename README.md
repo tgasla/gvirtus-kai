@@ -1,7 +1,7 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 # GVirtuS / KAI Scheduler integration
 
-## Roadmap
+## Project Roadmap
 
 - [x] [2025-04-02 - 2025-04-07] Familiarize with KAI-Scheduler
   - [x] Read KAI-Scheduler docs
