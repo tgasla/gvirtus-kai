@@ -7,8 +7,8 @@ spec:
   restartPolicy: Never
   containers:
   - name: cuda-app-container
-    image: taslanidis/cuda-app
-    command: ["/bin/bash", "-c", "./cudart_example"]  # Change this based on your app path and executable
+    image: taslanidis/gvirtus-app-example
+    command: ["./cudart_example"]  # Change this based on your app path and executable
     #resources:
      # limits:
      #   nvidia.com/gpu: 1  # Request 1 GPU for the container

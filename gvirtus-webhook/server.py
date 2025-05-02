@@ -173,8 +173,9 @@ def mutate():
     shell_command = (
         f'sed -i \'s/"server_address": "0.0.0.0"/"server_address": "137.43.130.205"/\' {GVIRTUS_HOME}/etc/properties.json && '
         + f'sed -i \'s/"port": "9999"/"port": "34567"/\' {GVIRTUS_HOME}/etc/properties.json && '
-        + "echo '[INFO] updated properties.json with a valid server address and port.' && "
-        f"echo Executing the original command {full_command}"
+        + "echo [INFO] updated properties.json with a valid server address and port && "
+        f"echo [INFO] Executing the original command {full_command} && "
+        + f"exec {full_command}"
     )
 
     patches = []

@@ -3,6 +3,8 @@ RUN apt update && apt install -y --no-install-recommends build-essential libxmu-
 RUN git clone https://github.com/tgasla/gvirtus.git
 ENV GVIRTUS_HOME=/usr/local/gvirtus
 RUN mkdir gvirtus/build && cd gvirtus/build && cmake .. && make && make install
-ENV LD_LIBRARY_PATH=${GVIRTUS_HOME}/lib:${GVIRTUS_HOME}/lib/frontend:${LD_LIBRARY_PATH}
+ENV LD_LIBRARY_PATH=${GVIRTUS_HOME}/lib:${LD_LIBRARY_PATH}
 ENV GVIRTUS_LOGLEVEL=0
 RUN sed -i 's/"server_address": "127.0.0.1"/"server_address": "0.0.0.0"/' ${GVIRTUS_HOME}/etc/properties.json
+ENTRYPOINT ["/bin/bash", "-c"]
+CMD ["${GVIRTUS_HOME}/bin/gvirtus-backend ${GVIRTUS_HOME}/etc/properties.json"]
