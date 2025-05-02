@@ -3,7 +3,7 @@
 
 ## Roadmap
 
-- [x] [2025-04-02 - 2025-04-07 Familiarize with KAI-Scheduler
+- [x] [2025-04-02 - 2025-04-07] Familiarize with KAI-Scheduler
   - [x] Read KAI-Scheduler docs
   - [x] Run the quickstart
   - [x] Run all examples to understand the KAI-Scheduler features
@@ -27,4 +27,4 @@
       - [x] [2025-04-22 - 2025-04-25] Create the mechanism (daemonset) that runs in all nodes and advertizes a fake GPU device
         - I run into the error: failed to create containerd container: CDI device injection failed: unresolvable CDI devices nvidia.com/gpu. The problem is that apart from the code that advertizes the device, there also should be some files created on the host machine, otherwise the device is not recognizable.
       - [x] [2025-04-26] Manually create the device spec, the character device file and the device .so file to make the device recognizable
-      - [x] [2025-04-27] Automate the process of creating all the mandatory files by adding them into the daemonset yaml spec. The directories and files needed are all created using an init container before the code that advertizes the fake device starts running. This way we make sure that unresolvable CDI device errors are eliminated.  
+      - [x] [2025-04-27] Automate the process of creating all the mandatory files by adding them into the daemonset yaml spec. The directories and files needed are all created using an init container before the code that advertizes the fake device starts running. This way we make sure that unresolvable CDI device errors are eliminated.
