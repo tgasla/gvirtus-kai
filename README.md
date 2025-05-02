@@ -51,3 +51,5 @@
     -  The mutating webhook configuration mechanism is provided in the project directory [gvirtus-webhook](gvirtus-webhook)
   - [ ] Automatically discover the GVirtuS backend server
     - [ ] Register the GVirtuS backends as Kubernetes services, enabling Kubernetes to (i) identify which cluster nodes are running GVirtuS backend services, and (ii) track how many frontends are actively connected to each backend. This decision will later support the implementation of logic for Kubernetes to automatically perform load balancing across GVirtuS backends or to select the backend node with the lowest communication latency to a given frontend.
+  - [ ] Decide which backend to choose based on a set of rules
+  - [ ] Implement self-healing mechanism of gvirtus backends
