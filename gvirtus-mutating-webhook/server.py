@@ -13,12 +13,16 @@ import os
 import base64
 import json
 import logging
+import socket
 
 # Configure logging
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger()
+
+IP_ADDR_REGEX = r"((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])\.?){4}"
+PORT_REGEX = r"([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|655[0-2][0-9]|6553[0-5])"
 
 
 def generate_self_signed_cert(cert_dir):
@@ -44,6 +48,9 @@ def generate_self_signed_cert(cert_dir):
             NameAttribute(NameOID.LOCALITY_NAME, "Copenhagen"),
             NameAttribute(NameOID.ORGANIZATION_NAME, "Gvirtus Webhook"),
             NameAttribute(NameOID.COMMON_NAME, "gvirtus-webhook.default.svc"),
+            NameAttribute(
+                NameOID.COMMON_NAME, "gvirtus-webhook.default.svc.cluster.local"
+            ),
         ]
     )
 
@@ -58,7 +65,13 @@ def generate_self_signed_cert(cert_dir):
     )  # Valid for 10 years
     builder = builder.public_key(private_key.public_key())
     builder = builder.add_extension(
-        SubjectAlternativeName([DNSName("gvirtus-webhook.default.svc")]), critical=False
+        SubjectAlternativeName(
+            [
+                DNSName("gvirtus-webhook.default.svc"),
+                DNSName("gvirtus-webhook.default.svc.cluster.local"),
+            ]
+        ),
+        critical=False,
     )
 
     # Sign the certificate
@@ -110,10 +123,19 @@ def patch_webhook(cert_path):
     logger.info("Patched MutatingWebhookConfiguration with new CA bundle successfully!")
 
 
+def find_best_gvirtus_backend_address_port(criterion="least-loaded"):
+    addr = socket.gethostbyname_ex("gvirtus-backend.default.svc.cluster.local")[2]
+    if not addr:
+        logger.error("No IP address found for the current host.")
+        return None
+    return addr[0]
+
+
 # ---- main Flask app ----
 app = Flask(__name__)
 
 GVIRTUS_HOME = "/usr/local/gvirtus"
+GVIRTUS_PORT = "34567"
 
 
 @app.route("/mutate", methods=["POST"])
@@ -133,6 +155,9 @@ def mutate():
     # if node_selector.get('gpu-virtualization') != 'vgpu':
     #     logger.warning("Pod does not have gpu-virtualization: vgpu node selector.")
     #     return admission_response(False, "Pod does not have gpu-virtualization: vgpu node selector.")
+    # annotations = pod["metadata"].get("annotations", {})
+    # if annotations.get("gvirtus.io/enable", "false") == "false":
+    #     pass
 
     pod_name = pod["metadata"].get("name", "<unknown>")
     logger.debug(f"Mutating pod: {pod_name}")
@@ -169,20 +194,17 @@ def mutate():
         full_command = " ".join(full_command).strip()
         logger.debug(f"Command is not a shell command, wrapping: {full_command}")
 
+    address = find_best_gvirtus_backend_address_port()
+
     # Construct the shell wrapper
     shell_command = (
-        f"export GVIRTUS_HOME={GVIRTUS_HOME}; "
-        f"echo GVIRTUS_HOME set to ${{GVIRTUS_HOME}}; "
-        f"export GVIRTUS_SHARED_LIBS=$(echo ${{GVIRTUS_HOME}}/lib/frontend/*.so | tr ' ' ':'); "
-        f"[ -z \"$GVIRTUS_SHARED_LIBS\" ] && echo 'No .so files found to preload!' && exit 1; "
-        f"echo GVIRTUS_SHARED_LIBS set to ${{GVIRTUS_SHARED_LIBS}}; "
-        f"export LD_LIBRARY_PATH=$GVIRTUS_HOME/lib:$GVIRTUS_HOME/lib/frontend:$LD_LIBRARY_PATH; "
-        f"echo LD_LIBRARY_PATH set to ${{LD_LIBRARY_PATH}}; "
-        f"echo printing the ldd of the original command before setting the LD_PRELOAD:; "
-        f"ldd {full_command}; "
-        f"ldconfig; "
-        f"echo Executing the original command {full_command} with new LD_PRELOAD set...; "
-        # f"LD_PRELOAD=$GVIRTUS_SHARED_LIBS LD_DEBUG=libs {full_command}; "
+        f'sed -r -i \'s/"server_address": "{IP_ADDR_REGEX}"/"server_address": "{address}"/\' {GVIRTUS_HOME}/etc/properties.json && '
+        f'sed -r -i \'s/"port": "{PORT_REGEX}"/"port": "{GVIRTUS_PORT}"/\' {GVIRTUS_HOME}/etc/properties.json && '
+        f"echo [INFO] Updated properties.json with a valid server address and port: {address}:{GVIRTUS_PORT} && "
+        f"echo [INFO] Printing contents of properties.json && "
+        f"cat {GVIRTUS_HOME}/etc/properties.json && "
+        f"echo [INFO] Executing the original command {full_command} && "
+        f"exec {full_command}"
     )
 
     patches = []
@@ -198,114 +220,6 @@ def mutate():
     patches.append(
         {"op": "replace", "path": "/spec/containers/0/args", "value": [shell_command]}
     )
-
-    volume_mount_value = {
-        "name": "gvirtus-shared",
-        "mountPath": GVIRTUS_HOME,
-    }
-
-    if "volumeMounts" not in app_container:
-        patches.append(
-            {"op": "add", "path": "/spec/containers/0/volumeMounts", "value": []}
-        )
-
-    patches.append(
-        {
-            "op": "add",
-            "path": "/spec/containers/0/volumeMounts/-",
-            "value": volume_mount_value,
-        }
-    )
-
-    # Patch to add the gvirtus init container
-    init_container = {
-        "name": "gvirtus-frontend",
-        "image": "taslanidis/gvirtus-frontend:latest",
-        "command": [
-            "/bin/sh",
-            "-c",
-            f'sed -i \'s/"server_address": "0.0.0.0"/"server_address": "137.43.130.205"/\' {GVIRTUS_HOME}/etc/properties.json && '
-            + f'sed -i \'s/"port": "9999"/"port": "34567"/\' {GVIRTUS_HOME}/etc/properties.json && '
-            + "echo 'Successfully updated properties.json with the correct server address and port!' && "
-            + f"cp -r {GVIRTUS_HOME}/* /usr/share/gvirtus && "
-            + "ln -s /usr/share/gvirtus/lib/frontend/libcudart.so.11.8 /usr/share/gvirtus/lib/frontend/libcudart.so.11.0 && "
-            "ldconfig && "
-            # "mkdir -p /usr/share/gvirtus/usr-lib-shared && "
-            # "mkdir -p /usr/share/gvirtus/lib-shared && "
-            # + "cp -r /usr/lib/$(uname -m)-linux-gnu/* /usr/share/gvirtus/usr-lib-shared && "
-            # + "cp -r /lib/$(uname -m)-linux-gnu/* /usr/share/gvirtus/lib-shared && "
-            + "echo 'Copied the whole gvirtus installation folder. Printing shared directory contents...' && "
-            + "ls /usr/share/gvirtus",
-        ],
-        # "command": [
-        #     "/bin/bash",
-        #     "-c",
-        #     f"""
-        #     set -e;
-        #     patch_config() {{
-        #         sed -i 's/"server_address": "0.0.0.0"/"server_address": "137.43.130.205"/' {GVIRTUS_HOME}/etc/properties.json &&
-        #         sed -i 's/"port": "9999"/"port": "34567"/' {GVIRTUS_HOME}/etc/properties.json &&
-        #         echo '[INFO] Patched GVirtuS config.';
-        #     }}
-        #     copy_library_and_symlinks() {{
-        #         LIBNAME="$1"
-        #         echo "[INFO] Processing $LIBNAME"
-        #         # Use ldconfig to find the full path of the .so (not a symlink)
-        #         LIBPATH="$(ldconfig -p | grep "$LIBNAME" | head -n 1 | awk '{{print $NF}}')"
-        #         if [ -z "$LIBPATH" ]; then
-        #             echo "[ERROR] $LIBNAME not found in ldconfig cache."
-        #             return 1
-        #         fi
-        #         DEST_DIR="/usr/share/gvirtus/lib"
-        #         # Resolve symlink chain
-        #         FULL_REALPATH="$(realpath "$LIBPATH")"
-        #         if [ -z "$FULL_REALPATH" ]; then
-        #             echo "[ERROR] Failed to resolve symlink for $LIBNAME."
-        #             return 1
-        #         fi
-        #         echo "[INFO] Copying $LIBNAME to $DEST_DIR"
-        #         cp "$FULL_REALPATH" "$DEST_DIR/"
-        #         # Now we recreate symlinks based on the original path
-        #         while [ "$LIBPATH" != "$FULL_REALPATH" ]; do
-        #             LINK_NAME="$(basename "$LIBPATH")"
-        #             TARGET_NAME="$(basename "$FULL_REALPATH")"
-        #             echo "[INFO] Linking $LINK_NAME -> $TARGET_NAME"
-        #             ln -sf "$TARGET_NAME" "$DEST_DIR/$LINK_NAME"
-        #             LIBPATH="$(readlink -f "$LIBPATH")"
-        #         done
-        #     }}
-        #     patch_config;
-        #     cp -r {GVIRTUS_HOME}/* /usr/share/gvirtus;
-        #     for lib in librdmacm libibverbs libnl libnl-route; do
-        #         copy_library_and_symlinks "$lib"
-        #     done;
-        #     echo '[INFO] Final contents:';
-        #     ls -l /usr/share/gvirtus/lib;
-        #     """,
-        # ],
-        "volumeMounts": [
-            {
-                "name": "gvirtus-shared",
-                "mountPath": "/usr/share/gvirtus",
-            },
-        ],
-    }
-
-    # Check if /spec/initContainers exists in the pod spec (e.g. coming from the admission request)
-    if "initContainers" not in pod.get("spec", {}):
-        patches.append({"op": "add", "path": "/spec/initContainers", "value": []})
-
-    # Now append the new init container
-    patches.append(
-        {"op": "add", "path": "/spec/initContainers/-", "value": init_container}
-    )
-
-    # Patch to add volume to pod spec
-    volume = {"name": "gvirtus-shared", "emptyDir": {}}
-    if "volumes" not in pod.get("spec", {}):
-        patches.append({"op": "add", "path": "/spec/volumes", "value": []})
-
-    patches.append({"op": "add", "path": "/spec/volumes/-", "value": volume})
 
     logger.debug("Generated patches:")
     logger.debug(json.dumps(patches, indent=2))

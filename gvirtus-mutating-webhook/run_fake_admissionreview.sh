@@ -1,4 +1,4 @@
-curl -k -X POST https://10.43.194.131:443/mutate \
+curl -k -X POST https://10.43.228.98:443/mutate \
      -H "Content-Type: application/json" \
      -d '{
          "apiVersion": "admission.k8s.io/v1",

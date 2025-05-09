@@ -3,7 +3,7 @@ kind: MutatingWebhookConfiguration
 metadata:
   name: gvirtus-mutating-webhook
 webhooks:
-  - name: gvirtus-webhook.default.svc
+  - name: gvirtus-webhook.default.svc.cluster.local
     clientConfig:
       service:
         name: gvirtus-webhook
@@ -11,15 +11,20 @@ webhooks:
         path: /mutate
         port: 443
     rules:
-      - operations: ["CREATE"]
+      - operations: ["CREATE", "UPDATE"]
         apiGroups: [""]
         apiVersions: ["v1"]
         resources: ["pods"]
+        scope: "*"
     admissionReviewVersions: ["v1"]
     sideEffects: None
     failurePolicy: Fail
-    namespaceSelector:
-      matchExpressions:
-        - key: skastos
-          operator: "In"
-          values: ["panta"]
+    objectSelector:
+      matchLabels:
+        gvirtus.io/enabled: "true"
+    # alternatively, you can use matchExpressions to match on multiple labels
+    #    matchExpressions:
+    #    - key: "gvirtus.io/enabled"
+    #      operator: "In"
+    #      values:
+    #      - "true"

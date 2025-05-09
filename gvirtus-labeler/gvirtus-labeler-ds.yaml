@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: gvirtus-labeler
+  labels:
+    app: gvirtus-labeler
+spec:
+  selector:
+    matchLabels:
+      app: gvirtus-labeler
+  template:
+    metadata:
+      labels:
+        app: gvirtus-labeler
+    spec:
+      serviceAccountName: gvirtus-labeler
+      containers:
+        - name: labeler
+          image: taslanidis/gvirtus-labeler:latest
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+      restartPolicy: Always

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gvirtus-backend
+  labels:
+    app: gvirtus-backend
+  namespace: default
+spec:
+  selector:
+    app: gvirtus-backend
+  ports:
+    - protocol: TCP
+      port: 34567
+      targetPort: 9999
+  type: ClusterIP

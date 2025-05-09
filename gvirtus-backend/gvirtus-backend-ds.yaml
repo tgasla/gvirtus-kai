@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: gvirtus-backend
+  labels:
+    app: gvirtus-backend
+spec:
+  selector:
+    matchLabels:
+      app: gvirtus-backend
+  template:
+    metadata:
+      labels:
+        app: gvirtus-backend
+    spec:
+      nodeSelector:
+        gvirtus.io/backend.allowed: "true"
+        nvidia.com/gpu.present: "true"
+      containers:
+        - name: gvirtus-backend
+          image: taslanidis/gvirtus:cuda11.8.0-cudnn8-ubuntu22.04
+          command: ["/bin/sh", "-c", "${GVIRTUS_HOME}/bin/gvirtus-backend ${GVIRTUS_HOME}/etc/properties.json"]
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9999
+      restartPolicy: Always

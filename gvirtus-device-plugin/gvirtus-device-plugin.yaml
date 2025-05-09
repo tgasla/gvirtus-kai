@@ -12,8 +12,19 @@ spec:
       labels:
         app: gvirtus-device-plugin
     spec:
-      nodeSelector:
-        gvirtus-role: frontend
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: gvirtus.io/frontend.allowed
+                operator: In
+                values:
+                - "true"
+              - key: nvidia.com/gpu.present
+                operator: NotIn
+                values:
+                - "true"
       initContainers:
       - name: bootstrap-host
         image: busybox:latest

@@ -15,6 +15,7 @@ spec:
       labels:
         app: gvirtus-webhook
     spec:
+      nodeName: daisone
       containers:
         - name: webhook-server
           image: taslanidis/gvirtus-webhook:latest
