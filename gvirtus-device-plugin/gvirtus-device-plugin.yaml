@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: gvirtus-device-plugin
     app.kubernetes.io/component: device-plugin
     app.kubernetes.io/part-of: gvirtus
-    app.kubernetes.io/version: "0.1.0"
+    app.kubernetes.io/version: "0.1.0-alpha"
 spec:
   selector:
     matchLabels:
@@ -18,7 +18,7 @@ spec:
         app.kubernetes.io/name: gvirtus-device-plugin
         app.kubernetes.io/component: device-plugin
         app.kubernetes.io/part-of: gvirtus
-        app.kubernetes.io/version: "0.1.0"
+        app.kubernetes.io/version: "0.1.0-alpha"
     spec:
       affinity:
         nodeAffinity:

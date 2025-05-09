@@ -6,4 +6,4 @@ metadata:
     app.kubernetes.io/name: gvirtus-system
     app.kubernetes.io/component: namespace
     app.kubernetes.io/part-of: gvirtus
-    app.kubernetes.io/version: "0.1.0"
+    app.kubernetes.io/version: "0.1.0-alpha"

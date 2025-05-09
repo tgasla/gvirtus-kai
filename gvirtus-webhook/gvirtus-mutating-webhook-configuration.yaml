@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: gvirtus-mutating-webhook-configuration
     app.kubernetes.io/component: webhook
     app.kubernetes.io/part-of: gvirtus
-    app.kubernetes.io/version: "0.1.0"
+    app.kubernetes.io/version: "0.1.0-alpha"
 webhooks:
   - name: gvirtus-webhook.gvirtus-system.svc.cluster.local
     clientConfig:

@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: gvirtus-webhook
     app.kubernetes.io/component: webhook
     app.kubernetes.io/part-of: gvirtus
-    app.kubernetes.io/version: "0.1.0"
+    app.kubernetes.io/version: "0.1.0-alpha"
 spec:
   replicas: 1
   selector:
@@ -19,7 +19,7 @@ spec:
         app.kubernetes.io/name: gvirtus-webhook
         app.kubernetes.io/component: webhook
         app.kubernetes.io/part-of: gvirtus
-        app.kubernetes.io/version: "0.1.0"
+        app.kubernetes.io/version: "0.1.0-alpha"
     spec:
       nodeName: daisone
       serviceAccountName: gvirtus-webhook
