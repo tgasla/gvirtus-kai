@@ -221,6 +221,24 @@ def mutate():
         {"op": "replace", "path": "/spec/containers/0/args", "value": [shell_command]}
     )
 
+    sel_key = "gvirtus.io/frontend.allowed"
+    sel_value = "true"
+
+    nodeSelector = pod["spec"].get("nodeSelector", {})
+    if not nodeSelector:
+        patches.append({
+                "op": "add",
+                "path": "/spec/nodeSelector",
+                "value": {}
+            })
+        
+    escaped_key = sel_key.replace("/", "~1")
+    patches.append({
+        "op": "add",
+        "path": f"/spec/nodeSelector/{escaped_key}",
+        "value": sel_value
+    })
+
     logger.debug("Generated patches:")
     logger.debug(json.dumps(patches, indent=2))
 
