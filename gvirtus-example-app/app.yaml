@@ -11,7 +11,7 @@ spec:
     image: taslanidis/gvirtus-app-example
     imagePullPolicy: IfNotPresent
     command: ["./cudart_example"]  # Change this based on your app path and executable
-  # nodeName: daisthree
-  resources:
-    limits:
-      nvidia.com/gpu: 1  # Request 1 GPU for the container
+  nodeName: daisone
+  # resources:
+  #   limits:
+  #     nvidia.com/gpu: 1  # Request 1 GPU for the container

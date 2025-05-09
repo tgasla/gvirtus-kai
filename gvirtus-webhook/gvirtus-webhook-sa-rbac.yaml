@@ -1,42 +1,44 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: gvirtus-labeler
+  name: gvirtus-webhook
   namespace: gvirtus-system
   labels:
-    app.kubernetes.io/name: gvirtus-labeler
-    app.kubernetes.io/component: labeler
+    app.kubernetes.io/name: gvirtus-webhook
+    app.kubernetes.io/component: webhook
     app.kubernetes.io/part-of: gvirtus
     app.kubernetes.io/version: "0.1.0"
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: gvirtus-labeler
+  name: gvirtus-webhook
   labels:
-    app.kubernetes.io/name: gvirtus-labeler
-    app.kubernetes.io/component: labeler
+    app.kubernetes.io/name: gvirtus-webhook
+    app.kubernetes.io/component: webhook
     app.kubernetes.io/part-of: gvirtus
     app.kubernetes.io/version: "0.1.0"
 rules:
-  - apiGroups: [""]
-    resources: ["nodes"]
-    verbs: ["get", "patch"]
+- apiGroups: ["admissionregistration.k8s.io"]
+  resources: ["mutatingwebhookconfigurations"]
+  verbs: ["get", "patch"]
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: gvirtus-labeler
+  name: gvirtus-webhook
   labels:
-    app.kubernetes.io/name: gvirtus-labeler
-    app.kubernetes.io/component: labeler
+    app.kubernetes.io/name: gvirtus-webhook
+    app.kubernetes.io/component: webhook
     app.kubernetes.io/part-of: gvirtus
     app.kubernetes.io/version: "0.1.0"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: gvirtus-labeler
+  name: gvirtus-webhook
 subjects:
-  - kind: ServiceAccount
-    name: gvirtus-labeler
-    namespace: gvirtus-system
+- kind: ServiceAccount
+  name: gvirtus-webhook
+  namespace: gvirtus-system

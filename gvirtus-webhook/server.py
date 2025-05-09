@@ -47,9 +47,9 @@ def generate_self_signed_cert(cert_dir):
             NameAttribute(NameOID.STATE_OR_PROVINCE_NAME, "Capital Region of Denmark"),
             NameAttribute(NameOID.LOCALITY_NAME, "Copenhagen"),
             NameAttribute(NameOID.ORGANIZATION_NAME, "Gvirtus Webhook"),
-            NameAttribute(NameOID.COMMON_NAME, "gvirtus-webhook.default.svc"),
+            NameAttribute(NameOID.COMMON_NAME, "gvirtus-webhook.gvirtus-system.svc"),
             NameAttribute(
-                NameOID.COMMON_NAME, "gvirtus-webhook.default.svc.cluster.local"
+                NameOID.COMMON_NAME, "gvirtus-webhook.gvirtus-system.svc.cluster.local"
             ),
         ]
     )
@@ -67,8 +67,8 @@ def generate_self_signed_cert(cert_dir):
     builder = builder.add_extension(
         SubjectAlternativeName(
             [
-                DNSName("gvirtus-webhook.default.svc"),
-                DNSName("gvirtus-webhook.default.svc.cluster.local"),
+                DNSName("gvirtus-webhook.gvirtus-system.svc"),
+                DNSName("gvirtus-webhook.gvirtus-system.svc.cluster.local"),
             ]
         ),
         critical=False,
@@ -116,7 +116,7 @@ def patch_webhook(cert_path):
 
     # Apply the patch using the JSON Patch type
     api.patch_mutating_webhook_configuration(
-        name="gvirtus-mutating-webhook",
+        name="gvirtus-mutating-webhook-configuration",
         body=webhook_patch,
     )
 
@@ -124,7 +124,7 @@ def patch_webhook(cert_path):
 
 
 def find_best_gvirtus_backend_address_port(criterion="least-loaded"):
-    addr = socket.gethostbyname_ex("gvirtus-backend.default.svc.cluster.local")[2]
+    addr = socket.gethostbyname_ex("gvirtus-backend.gvirtus-system.svc.cluster.local")[2]
     if not addr:
         logger.error("No IP address found for the current host.")
         return None

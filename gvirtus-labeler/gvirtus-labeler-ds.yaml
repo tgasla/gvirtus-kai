@@ -2,16 +2,23 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: gvirtus-labeler
+  namespace: gvirtus-system
   labels:
-    app: gvirtus-labeler
+    app.kubernetes.io/name: gvirtus-labeler
+    app.kubernetes.io/component: labeler
+    app.kubernetes.io/part-of: gvirtus
+    app.kubernetes.io/version: "0.1.0"
 spec:
   selector:
     matchLabels:
-      app: gvirtus-labeler
+      app.kubernetes.io/name: gvirtus-labeler
   template:
     metadata:
       labels:
-        app: gvirtus-labeler
+        app.kubernetes.io/name: gvirtus-labeler
+        app.kubernetes.io/component: labeler
+        app.kubernetes.io/part-of: gvirtus
+        app.kubernetes.io/version: "0.1.0"
     spec:
       serviceAccountName: gvirtus-labeler
       containers:

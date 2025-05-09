@@ -2,16 +2,23 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: gvirtus-backend
+  namespace: gvirtus-system
   labels:
-    app: gvirtus-backend
+    app.kubernetes.io/name: gvirtus-backend
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: gvirtus
+    app.kubernetes.io/version: "0.1.0"
 spec:
   selector:
     matchLabels:
-      app: gvirtus-backend
+      app.kubernetes.io/name: gvirtus-backend
   template:
     metadata:
       labels:
-        app: gvirtus-backend
+        app.kubernetes.io/name: gvirtus-backend
+        app.kubernetes.io/component: backend
+        app.kubernetes.io/part-of: gvirtus
+        app.kubernetes.io/version: "0.1.0"
     spec:
       nodeSelector:
         gvirtus.io/backend.allowed: "true"

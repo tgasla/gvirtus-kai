@@ -3,14 +3,22 @@ kind: DaemonSet
 metadata:
   name: gvirtus-device-plugin
   namespace: kube-system
+  labels:
+    app.kubernetes.io/name: gvirtus-device-plugin
+    app.kubernetes.io/component: device-plugin
+    app.kubernetes.io/part-of: gvirtus
+    app.kubernetes.io/version: "0.1.0"
 spec:
   selector:
     matchLabels:
-      app: gvirtus-device-plugin
+      app.kubernetes.io/name: gvirtus-device-plugin
   template:
     metadata:
       labels:
-        app: gvirtus-device-plugin
+        app.kubernetes.io/name: gvirtus-device-plugin
+        app.kubernetes.io/component: device-plugin
+        app.kubernetes.io/part-of: gvirtus
+        app.kubernetes.io/version: "0.1.0"
     spec:
       affinity:
         nodeAffinity:
@@ -68,7 +76,7 @@ spec:
         - name: host-root
           mountPath: /host
       containers:
-      - name: plugin
+      - name: gvirtus-device-plugin
         image: taslanidis/gvirtus-device-plugin:latest
         securityContext:
           privileged: true

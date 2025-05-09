@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gvirtus-system
+  labels:
+    app.kubernetes.io/name: gvirtus-system
+    app.kubernetes.io/component: namespace
+    app.kubernetes.io/part-of: gvirtus
+    app.kubernetes.io/version: "0.1.0"
