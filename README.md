@@ -114,7 +114,7 @@ kubectl get pods -n gvirtus-system -l app.kubernetes.io/component=backend -o wid
 > [!NOTE]
 > All docker images that are used in the Kubernetes manifests are built to support both `linux/amd64` and `linux/arm64` platforms.
 
-## Run a minimal example
+## Run Your First Example
 
 After you have (i) successfully installed all GVirtuS components in your kubernetes cluster, and (ii) at least one node runs the gvirtus backend, you are ready to run a gvirtus application.
 
