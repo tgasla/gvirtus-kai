@@ -113,9 +113,10 @@ If everything is installed properly and a gvirtus backend service is running on 
 
 ## Next Steps
 
-After running the minimal example, you can check out the project's documentation to better understand how the tool works and what it has to offer:
+After running the minimal example, you can explore the following resources to better understand the project:
 
-[Overview of GVirtus-KAI components](docs/components.md)
+### 📘 [Overview of GVirtus-KAI Components](docs/components.md)
+Learn how the core components work together under the hood.
 
-You can also check the project's roadmap to see the development process so far as well as what is the plan for next:
-[Project Roadmap](docs/roadmap.md)
+### 🗺️ [Project Roadmap](docs/roadmap.md)
+See the development progress and upcoming features at a glance.
