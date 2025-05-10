@@ -27,10 +27,9 @@ In the standard GVirtuS setup, users must manually edit a `properties.json` file
 
 ### ⚡ Current Status
 
-✅ No dependency on KAI Scheduler
-✅ Works on any Kubernetes cluster with NVIDIA GPU nodes
-❌ No current feature enhancements from KAI Scheduler
-🔜 Planned future integration with KAI Scheduler
+- ✅ No dependency on KAI Scheduler
+- ✅ Works on any Kubernetes cluster with NVIDIA GPU nodes
+- 🔜 Planned future integration with KAI Scheduler for added enhancements
 
 While the name suggests an integration with NVIDIA’s [KAI Scheduler](https://github.com/NVIDIA/KAI-Scheduler), this tool currently:
 
