@@ -49,9 +49,15 @@ In the future, this tool aims to integrate with the KAI Scheduler to possibly le
 
 ## Prerequisites
 
-- Install [k3s](https://docs.k3s.io/installation) (or any alternative tool of your choice) in nodes you want to be part of your cluster.
+Before setting up GVirtuS-KAI, ensure the following requirements are met:
 
-- Install [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/getting-started.html) in nodes you have a physical NVIDIA GPU device and you want these nodes to serve as GVirtuS backends.
+1. Kubernetes Cluster
+Install a lightweight Kubernetes distribution like [k3s](https://docs.k3s.io/installation) (or any other Kubernetes tool of your choice) on all nodes you want to include in the cluster.
+
+2. NVIDIA GPU Operator
+On nodes equipped with a **physical NVIDIA GPU**, install the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/overview.html). These nodes will be eligible to act as GVirtuS backends.
+> [!IMPORTANT]
+> Not all GPU-equipped nodes will automatically run GVirtuS backends. You will have the flexibility to **opt-in** specific nodes by labeling them manually. This provides fine-grained control over which nodes expose their GPU devices for virtualization.
 
 
 ## Installation
