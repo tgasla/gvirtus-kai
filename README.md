@@ -1,27 +1,52 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 # GVirtuS / KAI Scheduler integration
 
-## About
+## 🔍 Overview
 
-This section provides some background of GVirtuS while describing the main purpose of this purpose.
+This section introduces GVirtuS and explains the purpose and current capabilities of this integration tool.
 
-### GVirtuS
+### ⚙️ What is GVirtuS?
 
-GVirtuS is an open-source GPU virtualization framework. This framework allows virtual machines to access a GPU in a transarent way or enables a device without a GPU device to run GPU applications. It supports NVIDIA GPUs by using CUDA. One of the many advantages of GPU virtualization is the increase of resource efficiency. GVirtuS follows the client-server paradigm, consisting of mainly two comoponents, a backend (server) and a frontend (client). The backend component can only run on a GPU device, while the frontend component can run virtually anywhere.
+GVirtuS is an open-source GPU virtualization framework. This framework allows virtual machines to access a GPU in a transarent way or enables a device without a GPU device to run GPU applications. It supports NVIDIA GPUs by using CUDA. One of the many advantages of GPU virtualization is the increase of resource efficiency.
+
+GVirtuS follows a client-server architecture:
+- Backend: Runs on nodes with physical GPU hardware.
+- Frontend: Can run anywhere and offloads GPU calls to the backend.
 
 Learn more about GVirtuS: https://github.com/gvirtus/GVirtuS
 
-### GVirtuS-KAI
+### 🚀 What is GVirtuS-KAI?
 
-In GVirtuS, before running the frontend component one has to manually edit a properties JSON file, filling in the details of the backend server (its IP address and port number). However, this is a tedious process which does not scale, especially in the presence of multiple frontends and backends. The automatic management of gvirtus backends and frontends would increase the benefits of GVirtuS in complex setups, such as a medium or large multi-node Kubernetes cluster. This way, GVirtuS could be used in a transparent manner in all Kubernetes clusters that have our tool installed and thus provide GVirtuS capabilities.
+In the standard GVirtuS setup, users must manually edit a `properties.json` file on the frontend to specify the backend’s IP and port. This approach does not scale well for Kubernetes clusters with multiple frontend and backend nodes.
 
-This tool enables seamless GVirtuS GPU virtualization within a Kubernetes cluster by eliminating the need for manual infrastructure setup or complex component wiring. It allows application developers to focus entirely on building and deploying their applications, without worrying about underlying system integration.
+**GVirtuS-KAI** automates this setup to enable seamless GPU virtualization in Kubernetes:
 
-**GVirtuS-KAI** represents the envisioned integration between GVirtuS and the KAI Scheduler. However, at this stage, **no such integration exists**. Currently, this tool enables GPU virtualization by integrating GVirtuS with a standard Kubernetes cluster that uses the default [kube-scheduler](https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/#kube-scheduler), making the cluster GVirtuS-aware.
+- Automatically configures frontends without manual edits.
+- Enables transparent GVirtuS usage in medium or large multi-node clusters.
+- Allows developers to **focus on building applications**, not infrastructure setup.
 
-It **does not depend on the KAI Scheduler** and does **not** introduce any enhancements or features from it. The tool runs independently on any Kubernetes cluster with at least one GPU-enabled node. If KAI Scheduler happens to be installed in the cluster, it will **not interfere** with the tool’s functionality—GVirtuS-KAI will operate normally, but no additional benefits or interaction between the two will be present.
+### ⚡ Current Status
 
-The long-term goal is to integrate NVIDIA’s KAI Scheduler to take advantage of its advanced scheduling capabilities, thereby improving the intelligence and efficiency of GPU virtualization within the cluster.
+✅ No dependency on KAI Scheduler
+✅ Works on any Kubernetes cluster with NVIDIA GPU nodes
+❌ No current feature enhancements from KAI Scheduler
+🔜 Planned future integration with KAI Scheduler
+
+While the name suggests an integration with NVIDIA’s [KAI Scheduler](https://github.com/NVIDIA/KAI-Scheduler), this tool currently:
+
+- Introduces **no enhancements** from the KAI Scheduler.
+
+- **Does not require** KAI Scheduler to be installed.
+
+If KAI Scheduler is present in the cluster, **GVirtuS-KAI will continue to function normally**, but without any special integration or added benefits.
+
+### 🌟 Future Vision
+In the future, this tool aims to integrate with the KAI Scheduler to possibly leverage (among other things):
+
+- **Advanced GPU-aware scheduling**
+- **Improved backend-frontend placement**
+- **Better overall GPU resource utilization**
+  
 
 ## Prerequisites
 
