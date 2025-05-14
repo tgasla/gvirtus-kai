@@ -28,7 +28,7 @@ In the standard GVirtuS setup, users must manually edit a `properties.json` file
 ### ⚡ Current Status
 
 The pre-release version [v0.1.0-alpha](https://github.com/tgasla/gvirtus-kai/releases/tag/v0.1.0-alpha) is out!
-This irelease is considered stable and fully operational.
+This release is considered stable and fully operational.
 **GVirtuS-KAI** can be plugged into any Kubernetes cluster to enable GPU virtualization using GVirtuS. In other words, it makes any Kubernetes cluster **GVirtuS-aware**.
 
 ### 🎯 Final Goal
@@ -65,15 +65,21 @@ A typical usage workflow looks like this:
 #### 🔼 High-Priority Tasks
 
 [x] Make a Kubernetes cluster GVirtuS-aware
+
 [ ] Make KAI-Scheduler GVirtuS-aware
+
 [ ] Control frontend placement policy
+
 [ ] Enable backend load measurement (e.g., active connections, GPU load specific to GVirtuS, total GPU load) 
+
 [ ] Backend selection policy based on load and/or geographical proximity
+
 [ ] Autoscale backends based on frontend demand (horizontal autoscaling)
 
 #### ⬇️ Low-Priority Tasks
 
 [ ] When no backends are available, the frontend pod currently fails and requires manual deletion and resubmission. Ideally, the pod should stay in `Pending` state until a backend becomes available.
+
 [ ] Mutation logic currently assumes a single container per pod. Support for multiple containers using GVirtuS in the same pod should be explored. 
 
 <!-- 
