@@ -1,5 +1,5 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-# GVirtuS / KAI Scheduler integration
+# GVirtuS / KAI-Scheduler integration
 
 ## 🔍 Overview
 
@@ -27,33 +27,76 @@ In the standard GVirtuS setup, users must manually edit a `properties.json` file
 
 ### ⚡ Current Status
 
+The pre-release version [v0.1.0-alpha](https://github.com/tgasla/gvirtus-kai/releases/tag/v0.1.0-alpha) is out!
+This irelease is considered stable and fully operational.
+**GVirtuS-KAI** can be plugged into any Kubernetes cluster to enable GPU virtualization using GVirtuS. In other words, it makes any Kubernetes cluster **GVirtuS-aware**.
+
+### 🎯 Final Goal
+
+The ultimate goal of GVirtuS-KAI is to seamlessly integrate GVirtuS with Kubernetes and extend this integration to NVIDIA’s [KAI Scheduler](https://github.com/NVIDIA/KAI-Scheduler).
+
+This will enable:
+- Full GVirtuS-awareness at the cluster level.
+- Intelligent GPU resource scheduling through the KAI-Scheduler.
+- Integration with AI training and inference workflows governed by KAI policies.
+
+
+### 🚀 Usage
+
+A typical usage workflow looks like this:
+
+1. Install GVirtuS-KAI on your Kubernetes cluster by applying the provided manifests. Label frontend and backend nodes appropriately (see [Installation](README.md#installation))
+2. Deploy a GPU pod, with GVirtuS virtualization enabled (see [Run Your First Example](/README.md#run-your-first-example) instructions below)
+3. GVirtuS-KAI will automatically:
+    - Select a backend node.
+    - Establish the connection.
+    - Launch your application using GVirtuS GPU virtualization.
+
+> [!NOTE]
+> Frontends are scheduled by your chosen scheduler (e.g., the default `kube-scheduler` or NVIDIA’s `KAI-Scheduler`).
+> Backends are randomly selected (see [GVirtuS Backend Service](docs/components.md#gvirtus-backend-service)).
+> Backend scaling is manual: nodes with physical GPU access must be explicitly labeled.
+
+> [!NOTE]
+> Despite the name, GVirtuS-KAI **does not require** the KAI-Scheduler to function. If the KAI-Scheduler is present, GVirtuS-KAI will continue to work without conflict — but **no special integration or enhancements** are currently available.
+
+### Roadmap
+
+#### 🔼 High-Priority Tasks
+
+[x] Make a Kubernetes cluster GVirtuS-aware
+[ ] Make KAI-Scheduler GVirtuS-aware
+[ ] Control frontend placement policy
+[ ] Enable backend load measurement (e.g., active connections, GPU load specific to GVirtuS, total GPU load) 
+[ ] Backend selection policy based on load and/or geographical proximity
+[ ] Autoscale backends based on frontend demand (horizontal autoscaling)
+
+#### ⬇️ Low-Priority Tasks
+
+[ ] When no backends are available, the frontend pod currently fails and requires manual deletion and resubmission. Ideally, the pod should stay in `Pending` state until a backend becomes available.
+[ ] Mutation logic currently assumes a single container per pod. Support for multiple containers using GVirtuS in the same pod should be explored. 
+
+<!-- 
 - ✅ No dependency on KAI Scheduler
 - ✅ Works on any Kubernetes cluster with NVIDIA GPU nodes
-- 🔜 Planned future integration with KAI Scheduler for added enhancements
-
-While the name suggests an integration with NVIDIA’s [KAI Scheduler](https://github.com/NVIDIA/KAI-Scheduler), this tool currently:
-
-- Introduces **no enhancements** from the KAI Scheduler.
-
-- **Does not require** KAI Scheduler to be installed.
-
-If KAI Scheduler is present in the cluster, **GVirtuS-KAI will continue to function normally**, but without any special integration or added benefits.
+- 🔜 Planned future integration with KAI-Scheduler for added enhancements
 
 ### 🌟 Future Vision
 In the future, this tool aims to integrate with the KAI Scheduler to possibly leverage (among other things):
 
-- **Advanced GPU-aware scheduling**
+- **Advanced scheduling**
 - **Improved backend-frontend placement**
 - **Better overall GPU resource utilization**
-  
+ -->
 
 ## Prerequisites
 
 Before setting up GVirtuS-KAI, ensure the following requirements are met:
 
-1. Kubernetes Cluster: Install a lightweight Kubernetes distribution like [k3s](https://docs.k3s.io/quick-start) (or any other Kubernetes tool of your choice) on all nodes you want to include in the cluster.
+- Kubernetes Cluster: Install a Kubernetes distribution like [k3s](https://docs.k3s.io/quick-start) on all nodes you want to include in the cluster.
 
-3. NVIDIA GPU Operator: On nodes equipped with a **physical NVIDIA GPU**, install the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/overview.html). These nodes will be eligible to act as GVirtuS backends.
+- NVIDIA GPU Operator: On nodes equipped with a **physical NVIDIA GPU**, install the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/overview.html). These nodes will be eligible to act as GVirtuS backends.
+
 > [!IMPORTANT]
 > Not all GPU-equipped nodes will automatically run GVirtuS backends. You will have the flexibility to **opt-in** specific nodes by labeling them manually. This provides fine-grained control over which nodes expose their GPU devices for virtualization.
 
@@ -115,6 +158,10 @@ kubectl get pods -n gvirtus-system -l app.kubernetes.io/component=backend -o wid
 ```
 
 > [!NOTE]
+> Ensure that at least one `gvirtus-backend` pod is running in your cluster.  
+> Otherwise, the frontend application will fail to execute.
+
+> [!NOTE]
 > All docker images that are used in the Kubernetes manifests are built to support both `linux/amd64` and `linux/arm64` platforms.
 
 ## Run Your First Example
@@ -127,7 +174,7 @@ kubectl apply -f gvirtus-example-app/.
 
 > [!IMPORTANT]
 > Note that any application pod that wants to make use of the GVirtuS framework, needs to:
-> - Use the `taslanidis/gvirtus:cuda11.8.0-cudnn8-ubuntu22.04` image as a base image, which already has the gvirtus library pre-installed
+> - Use the `taslanidis/gvirtus:cuda11.8.0-cudnn8-ubuntu22.04` image as a base image, which already has tßßhe gvirtus library pre-installed
 > - Compile the SINGLE .cu source file using the nvcc compiler with the flags `-L ${GVIRTUS_HOME}/lib/frontend --cudart=shared`
 > - Include a `command` in the container pod spec that executes the cuda application binary
 > label the pod with `gvirtus.io/enabled: "true"`
@@ -141,10 +188,10 @@ If everything is installed properly and a gvirtus backend service is running on 
 
 ## Next Steps
 
-After running the minimal example, you can explore the following resources to better understand the project:
+After running the minimal example, you can explore the following resources to get more familiar with the project:
 
-### 📘 [Overview of GVirtus-KAI Components](docs/components.md)
+### 📘 [Documentation: Overview of GVirtus-KAI Components](docs/components.md)
 Learn how the core components work together under the hood.
 
-### 🗺️ [Project Roadmap](docs/roadmap.md)
-See the development progress and upcoming features at a glance.
+###  📝 [Project Journal](docs/journal.md)
+See the development journal of the project.
