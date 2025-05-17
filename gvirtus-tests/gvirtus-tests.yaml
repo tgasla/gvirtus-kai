@@ -10,7 +10,7 @@ spec:
   - name: gvirtus-tests-container
     image: taslanidis/gvirtus-tests:latest
     imagePullPolicy: Always
-    command: ["sleep infinity"]  # Change this based on your app path and executable
+    command: ["./build/test_cuda_libs"]  # Change this based on your app path and executable
   # nodeName: daisthree # Uncomment for testing
   # resources:
   #   limits:

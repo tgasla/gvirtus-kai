@@ -44,7 +44,22 @@ TEST(CurandTest, GenerateUniform) {
     ASSERT_EQ(cudaFree(output), cudaSuccess);
 }
 
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+TEST(CurandTest, GenerateUniformHost) {
+    curandGenerator_t generator;
+    ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
+    ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 1234ULL), CURAND_STATUS_SUCCESS);
+
+    const size_t n = 10;
+    float* output = (float*)malloc(n * sizeof(float));
+    ASSERT_NE(output, nullptr);
+
+    ASSERT_EQ(curandGenerateUniform(generator, output, n), CURAND_STATUS_SUCCESS);
+
+    for (size_t i = 0; i < n; ++i) {
+        EXPECT_GE(output[i], 0.0f);
+        EXPECT_LT(output[i], 1.0f);
+    }
+
+    ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
+    free(output);
 }
