@@ -1,0 +1,70 @@
+cmake_minimum_required(VERSION 3.17)
+project(GVirtusCudaLibTests LANGUAGES CXX CUDA)
+cmake_policy(SET CMP0104 NEW)
+
+# Set a default CUDA architecture
+if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
+    set(CMAKE_CUDA_ARCHITECTURES 75 86 89)
+endif()
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CUDA_STANDARD 17)
+
+enable_testing()
+
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+# You probably want to specify GVIRTUS_HOME as a cache variable or environment variable:
+set(GVIRTUS_HOME $ENV{GVIRTUS_HOME} CACHE PATH "Path to GVIRTUS installation")
+
+if(NOT EXISTS "${GVIRTUS_HOME}")
+    message(FATAL_ERROR "GVIRTUS_HOME not set correctly or does not exist.")
+endif()
+
+include_directories(
+    ${GVIRTUS_HOME}/include
+)
+
+link_directories(
+    ${GVIRTUS_HOME}/lib/frontend
+)
+
+add_executable(test_cuda_libs test_libcurand.cu)
+
+# Enable C++ and CUDA debugging
+set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
+set(CMAKE_CUDA_FLAGS_DEBUG "-O0 -G -g --device-debug -lineinfo")
+
+# Declare the build type explicitly (just to be safe)
+set(CMAKE_BUILD_TYPE Debug)
+
+# Enable CUDA as a language and set flags if needed
+target_compile_features(test_cuda_libs PUBLIC cxx_std_14)
+
+# Enable specific compile options for CUDA (including debug)
+target_compile_options(test_cuda_libs PRIVATE
+    $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr --expt-extended-lambda -g -G --device-debug -lineinfo>
+)
+
+# Ensure runtime libraries are dynamically linked
+set_target_properties(test_cuda_libs PROPERTIES
+    CUDA_RUNTIME_LIBRARY Shared
+)
+
+# -----------------------------------------
+# Linking libraries
+# -----------------------------------------
+target_link_libraries(test_cuda_libs
+    ${GTEST_LIBRARIES}
+    pthread
+    dl
+    curand
+    cublas
+    cudnn
+    cufft
+    cudart  # CUDA runtime library
+    cuda    # CUDA driver API (optional but helpful for low-level APIs)
+)
+
+add_test(NAME AllCudaTests COMMAND test_cuda_libs)

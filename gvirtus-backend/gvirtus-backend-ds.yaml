@@ -26,8 +26,8 @@ spec:
       containers:
         - name: gvirtus-backend
           image: taslanidis/gvirtus:cuda11.8.0-cudnn8-ubuntu22.04
+          imagePullPolicy: Always
           command: ["/bin/sh", "-c", "${GVIRTUS_HOME}/bin/gvirtus-backend ${GVIRTUS_HOME}/etc/properties.json"]
-          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9999
       restartPolicy: Always
