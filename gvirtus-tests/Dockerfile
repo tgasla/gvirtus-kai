@@ -11,6 +11,6 @@ COPY CMakeLists.txt .
 COPY test_curand.cu .
 ENV LD_LIBRARY_PATH=${GVIRTUS_HOME}/lib/frontend:${LD_LIBRARY_PATH}
 # Build the tests
-RUN mkdir build && cd build && cmake .. && make verbose=1
+RUN mkdir build && cd build && cmake .. && make
 # Run the tests when container starts
 CMD ["./build/test_cuda_libs"]

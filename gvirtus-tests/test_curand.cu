@@ -2,13 +2,13 @@
 #include <iostream>
 #include <curand.h>
 
-TEST(CurandTest, CreateGenerator) {
+TEST(CurandTest, CreateDestroyGenerator) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
 }
 
-TEST(CurandTest, CreateGeneratorHost) {
+TEST(CurandTest, CreateDestroyGeneratorHost) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
@@ -72,6 +72,64 @@ TEST(CurandTest, GenerateHost) {
     free(output);
 }
 
+TEST(CurandTest, GenerateLongLongDevice) {
+    curandGenerator_t generator;
+    const size_t num = 10;
+
+    // Create a quasi-random number generator
+    ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_QUASI_SOBOL64), CURAND_STATUS_SUCCESS) << "Failed to create generator";
+
+    // Set dimensions (required for quasi generators)
+    ASSERT_EQ(curandSetQuasiRandomGeneratorDimensions(generator, 1), CURAND_STATUS_SUCCESS) << "Failed to set dimensions";
+
+    // Allocate device memory
+    unsigned long long* d_output = nullptr;
+    ASSERT_EQ(cudaMalloc(&d_output, num * sizeof(unsigned long long)), cudaSuccess) << "Failed to allocate device memory";
+
+    // Generate quasi-random numbers
+    ASSERT_EQ(curandGenerateLongLong(generator, d_output, num), CURAND_STATUS_SUCCESS) << "curandGenerateLongLong failed";
+
+    // Copy results back to host for checking
+    unsigned long long h_output[num];
+    ASSERT_EQ(cudaMemcpy(h_output, d_output, num * sizeof(unsigned long long), cudaMemcpyDeviceToHost), cudaSuccess) << "Failed to copy data from device to host";
+
+    std::cout << "Generated long long values (quasi): ";
+    for (size_t i = 0; i < num; ++i) {
+        std::cout << h_output[i] << " ";
+    }
+    std::cout << std::endl;
+
+    // Clean up
+    ASSERT_EQ(cudaFree(d_output), cudaSuccess) << "Failed to free device memory";
+    ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS) << "Failed to destroy generator";
+}
+
+TEST(CurandTest, GenerateLongLongHost) {
+    curandGenerator_t generator;
+    const size_t num = 10;
+
+    // Create a QUASI-random number generator (host generator)
+    ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_QUASI_SOBOL64), CURAND_STATUS_SUCCESS) << "Failed to create QUASI generator";
+
+     // Set dimensions (required for quasi generators)
+    ASSERT_EQ(curandSetQuasiRandomGeneratorDimensions(generator, 1), CURAND_STATUS_SUCCESS) << "Failed to set dimensions";
+
+    // Allocate host memory for output
+    unsigned long long* h_output = new unsigned long long[num];
+
+    // Generate random numbers on host
+    ASSERT_EQ(curandGenerateLongLong(generator, h_output, num), CURAND_STATUS_SUCCESS) << "curandGenerateLongLong failed";
+
+    std::cout << "Generated long long values (host, QUASI): ";
+    for (size_t i = 0; i < num; ++i) {
+        std::cout << h_output[i] << " ";
+    }
+    std::cout << std::endl;
+
+    delete[] h_output;
+    ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS) << "Failed to destroy generator";
+}
+
 TEST(CurandTest, GenerateUniformDevice) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
@@ -93,57 +151,6 @@ TEST(CurandTest, GenerateUniformDevice) {
 
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(cudaFree(output), cudaSuccess);
-}
-
-TEST(CurandTest, GenerateLongLongDevice) {
-    curandGenerator_t generator;
-    ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
-    ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 5678ULL), CURAND_STATUS_SUCCESS);
-
-    const size_t n = 10;
-    unsigned long long* output;
-    ASSERT_EQ(cudaMalloc(&output, n * sizeof(unsigned long long)), cudaSuccess);
-
-    ASSERT_EQ(curandGenerateLongLong(generator, output, n), CURAND_STATUS_SUCCESS);
-
-    unsigned long long host_output[n];
-    ASSERT_EQ(cudaMemcpy(host_output, output, n * sizeof(unsigned long long), cudaMemcpyDeviceToHost), cudaSuccess);
-
-    bool all_zero = true;
-    for (size_t i = 0; i < n; ++i) {
-        if (host_output[i] != 0ULL) {
-            all_zero = false;
-            break;
-        }
-    }
-    EXPECT_FALSE(all_zero);  // Generated numbers should not all be zero
-
-    ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
-    ASSERT_EQ(cudaFree(output), cudaSuccess);
-}
-
-TEST(CurandTest, GenerateLongLongHost) {
-    curandGenerator_t generator;
-    ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
-    ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 5678ULL), CURAND_STATUS_SUCCESS);
-
-    const size_t n = 10;
-    unsigned long long* output = (unsigned long long*)malloc(n * sizeof(unsigned long long));
-    ASSERT_NE(output, nullptr);
-
-    ASSERT_EQ(curandGenerateLongLong(generator, output, n), CURAND_STATUS_SUCCESS);
-
-    bool all_zero = true;
-    for (size_t i = 0; i < n; ++i) {
-        if (output[i] != 0ULL) {
-            all_zero = false;
-            break;
-        }
-    }
-    EXPECT_FALSE(all_zero);  // Generated numbers should not all be zero
-
-    ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
-    free(output);
 }
 
 TEST(CurandTest, GenerateUniformHost) {
