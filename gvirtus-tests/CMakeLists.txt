@@ -21,11 +21,6 @@ set(SOURCES test_curand.cu)
 # Add executable target
 add_executable(test_cuda_libs ${SOURCES})
 
-# Pass nvcc options: shared CUDA runtime, debugging info if you want
-# target_compile_options(test_cuda_libs PRIVATE
-#     $<$<COMPILE_LANGUAGE:CUDA>:--cudart=shared> -L $ENV{GVIRTUS_HOME}/lib/frontend
-# )
-
 set_target_properties(test_cuda_libs PROPERTIES
     CUDA_RUNTIME_LIBRARY Shared
 )
@@ -39,15 +34,12 @@ target_include_directories(test_cuda_libs PRIVATE
 # Link GVirtuS libs
 target_link_directories(test_cuda_libs PRIVATE
     $ENV{GVIRTUS_HOME}/lib/frontend
-    # $ENV{GVIRTUS_HOME}/lib
 )
 
 # Link GoogleTest libraries
 target_link_libraries(test_cuda_libs PRIVATE
     GTest::GTest
     GTest::Main
-    # dl
-    # pthread
     curand
     cudart
     cublas
@@ -55,8 +47,6 @@ target_link_libraries(test_cuda_libs PRIVATE
     cudnn
 )
 
-# Set RPATH so your executable finds GVirtuS shared libs at runtime
 set_target_properties(test_cuda_libs PROPERTIES
-#     BUILD_RPATH "$ENV{LD_LIBRARY_PATH}"
     CUDA_SEPARABLE_COMPILATION ON
 )
