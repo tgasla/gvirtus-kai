@@ -16,7 +16,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(GTest REQUIRED)
 
 # Your CUDA source file
-set(SOURCES test_curand.cu)
+set(SOURCES
+    test_cudart.cu
+    test_cublas.cu
+    test_curand.cu
+    test_cufft.cu
+)
 
 # Add executable target
 add_executable(test_cuda_libs ${SOURCES})

@@ -2,26 +2,26 @@
 #include <iostream>
 #include <curand.h>
 
-TEST(CurandTest, CreateDestroyGenerator) {
+TEST(cuRAND, CreateDestroyGenerator) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
 }
 
-TEST(CurandTest, CreateDestroyGeneratorHost) {
+TEST(cuRAND, CreateDestroyGeneratorHost) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
 }
 
-TEST(CurandTest, SetSeed) {
+TEST(cuRAND, SetSeed) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 1234ULL), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
 }
 
-TEST(CurandTest, GenerateDevice) {
+TEST(cuRAND, GenerateDevice) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 1234ULL), CURAND_STATUS_SUCCESS);
@@ -48,7 +48,7 @@ TEST(CurandTest, GenerateDevice) {
     ASSERT_EQ(cudaFree(output), cudaSuccess);
 }
 
-TEST(CurandTest, GenerateHost) {
+TEST(cuRAND, GenerateHost) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 1234ULL), CURAND_STATUS_SUCCESS);
@@ -72,7 +72,7 @@ TEST(CurandTest, GenerateHost) {
     free(output);
 }
 
-TEST(CurandTest, GenerateLongLongDevice) {
+TEST(cuRAND, GenerateLongLongDevice) {
     curandGenerator_t generator;
     const size_t num = 10;
 
@@ -93,18 +93,12 @@ TEST(CurandTest, GenerateLongLongDevice) {
     unsigned long long h_output[num];
     ASSERT_EQ(cudaMemcpy(h_output, d_output, num * sizeof(unsigned long long), cudaMemcpyDeviceToHost), cudaSuccess) << "Failed to copy data from device to host";
 
-    std::cout << "Generated long long values (quasi): ";
-    for (size_t i = 0; i < num; ++i) {
-        std::cout << h_output[i] << " ";
-    }
-    std::cout << std::endl;
-
     // Clean up
     ASSERT_EQ(cudaFree(d_output), cudaSuccess) << "Failed to free device memory";
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS) << "Failed to destroy generator";
 }
 
-TEST(CurandTest, GenerateLongLongHost) {
+TEST(cuRAND, GenerateLongLongHost) {
     curandGenerator_t generator;
     const size_t num = 10;
 
@@ -120,17 +114,11 @@ TEST(CurandTest, GenerateLongLongHost) {
     // Generate random numbers on host
     ASSERT_EQ(curandGenerateLongLong(generator, h_output, num), CURAND_STATUS_SUCCESS) << "curandGenerateLongLong failed";
 
-    std::cout << "Generated long long values (host, QUASI): ";
-    for (size_t i = 0; i < num; ++i) {
-        std::cout << h_output[i] << " ";
-    }
-    std::cout << std::endl;
-
     delete[] h_output;
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS) << "Failed to destroy generator";
 }
 
-TEST(CurandTest, GenerateUniformDevice) {
+TEST(cuRAND, GenerateUniformDevice) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 1234ULL), CURAND_STATUS_SUCCESS);
@@ -153,7 +141,7 @@ TEST(CurandTest, GenerateUniformDevice) {
     ASSERT_EQ(cudaFree(output), cudaSuccess);
 }
 
-TEST(CurandTest, GenerateUniformHost) {
+TEST(cuRAND, GenerateUniformHost) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 1234ULL), CURAND_STATUS_SUCCESS);
@@ -173,7 +161,7 @@ TEST(CurandTest, GenerateUniformHost) {
     free(output);
 }
 
-TEST(CurandTest, GenerateNormalDevice) {
+TEST(cuRAND, GenerateNormalDevice) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 9012ULL), CURAND_STATUS_SUCCESS);
@@ -209,7 +197,7 @@ TEST(CurandTest, GenerateNormalDevice) {
     ASSERT_EQ(cudaFree(output), cudaSuccess);
 }
 
-TEST(CurandTest, GenerateNormalHost) {
+TEST(cuRAND, GenerateNormalHost) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 9012ULL), CURAND_STATUS_SUCCESS);
@@ -242,7 +230,7 @@ TEST(CurandTest, GenerateNormalHost) {
     free(output);
 }
 
-TEST(CurandTest, GenerateLogNormalDevice) {
+TEST(cuRAND, GenerateLogNormalDevice) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 8642ULL), CURAND_STATUS_SUCCESS);
@@ -267,7 +255,7 @@ TEST(CurandTest, GenerateLogNormalDevice) {
     ASSERT_EQ(cudaFree(output), cudaSuccess);
 }
 
-TEST(CurandTest, GenerateLogNormalHost) {
+TEST(cuRAND, GenerateLogNormalHost) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 8642ULL), CURAND_STATUS_SUCCESS);
@@ -289,7 +277,7 @@ TEST(CurandTest, GenerateLogNormalHost) {
     free(output);
 }
 
-TEST(CurandTest, GeneratePoissonDevice) {
+TEST(cuRAND, GeneratePoissonDevice) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 3456ULL), CURAND_STATUS_SUCCESS);
@@ -317,7 +305,7 @@ TEST(CurandTest, GeneratePoissonDevice) {
     ASSERT_EQ(cudaFree(output), cudaSuccess);
 }
 
-TEST(CurandTest, GeneratePoissonHost) {
+TEST(cuRAND, GeneratePoissonHost) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 3456ULL), CURAND_STATUS_SUCCESS);
@@ -341,7 +329,7 @@ TEST(CurandTest, GeneratePoissonHost) {
     free(output);
 }
 
-TEST(CurandTest, GenerateUniformDoubleDevice) {
+TEST(cuRAND, GenerateUniformDoubleDevice) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 7890ULL), CURAND_STATUS_SUCCESS);
@@ -364,7 +352,7 @@ TEST(CurandTest, GenerateUniformDoubleDevice) {
     ASSERT_EQ(cudaFree(output), cudaSuccess);
 }
 
-TEST(CurandTest, GenerateUniformDoubleHost) {
+TEST(cuRAND, GenerateUniformDoubleHost) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 7890ULL), CURAND_STATUS_SUCCESS);
@@ -384,7 +372,7 @@ TEST(CurandTest, GenerateUniformDoubleHost) {
     free(output);
 }
 
-TEST(CurandTest, GenerateNormalDoubleDevice) {
+TEST(cuRAND, GenerateNormalDoubleDevice) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 2468ULL), CURAND_STATUS_SUCCESS);
@@ -420,7 +408,7 @@ TEST(CurandTest, GenerateNormalDoubleDevice) {
     ASSERT_EQ(cudaFree(output), cudaSuccess);
 }
 
-TEST(CurandTest, GenerateNormalDoubleHost) {
+TEST(cuRAND, GenerateNormalDoubleHost) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 2468ULL), CURAND_STATUS_SUCCESS);
@@ -453,7 +441,7 @@ TEST(CurandTest, GenerateNormalDoubleHost) {
     free(output);
 }
 
-TEST(CurandTest, GenerateLogNormalDoubleDevice) {
+TEST(cuRAND, GenerateLogNormalDoubleDevice) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 1357ULL), CURAND_STATUS_SUCCESS);
@@ -478,7 +466,7 @@ TEST(CurandTest, GenerateLogNormalDoubleDevice) {
     ASSERT_EQ(cudaFree(output), cudaSuccess);
 }
 
-TEST(CurandTest, GenerateLogNormalDoubleHost) {
+TEST(cuRAND, GenerateLogNormalDoubleHost) {
     curandGenerator_t generator;
     ASSERT_EQ(curandCreateGeneratorHost(&generator, CURAND_RNG_PSEUDO_DEFAULT), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(curandSetPseudoRandomGeneratorSeed(generator, 1357ULL), CURAND_STATUS_SUCCESS);
