@@ -1,0 +1,4229 @@
+[INFO] Updated properties.json with a valid server address and port: 10.43.1.218:34567
+[INFO] Printing contents of properties.json
+{
+  "communicator": [
+    {
+      "endpoint": {
+        "suite": "tcp/ip",
+        "protocol": "tcp",
+        "server_address": "10.43.1.218",
+        "port": "34567"
+      },
+      "plugins": [
+        "cudart",
+        "cublas",
+        "curand",
+        "cudnn",
+        "cufft"
+      ]
+    }
+  ],
+  "secure_application": false
+}[INFO] Executing the original command ./build/test_cuda_libs
+INFO - 🛈  - GVirtuS frontend version /usr/local/gvirtus/etc/properties.json
+Running main() from ./googletest/src/gtest_main.cc
+[==========] Running 78 tests from 5 test suites.
+[----------] Global test environment set-up.
+[----------] 9 tests from cudaRT
+[ RUN      ] cudaRT.MallocFree
+[       OK ] cudaRT.MallocFree (75 ms)
+[ RUN      ] cudaRT.MemcpySync
+[       OK ] cudaRT.MemcpySync (1 ms)
+[ RUN      ] cudaRT.MemcpyAsync
+[       OK ] cudaRT.MemcpyAsync (1 ms)
+[ RUN      ] cudaRT.Memset
+[       OK ] cudaRT.Memset (0 ms)
+[ RUN      ] cudaRT.StreamCreateDestroySynchronize
+[       OK ] cudaRT.StreamCreateDestroySynchronize (0 ms)
+[ RUN      ] cudaRT.GetDevice
+[       OK ] cudaRT.GetDevice (0 ms)
+[ RUN      ] cudaRT.SetDevice
+[       OK ] cudaRT.SetDevice (0 ms)
+[ RUN      ] cudaRT.DeviceSynchronize
+[       OK ] cudaRT.DeviceSynchronize (0 ms)
+[ RUN      ] cudaRT.EventCreateRecordSynchronizeElapsedTime
+unknown file: Failure
+Unknown C++ exception thrown in the test body.
+[  FAILED  ] cudaRT.EventCreateRecordSynchronizeElapsedTime (0 ms)
+[----------] 9 tests from cudaRT (81 ms total)
+
+[----------] 13 tests from cuBLAS
+[ RUN      ] cuBLAS.CreateDestroy
+[       OK ] cuBLAS.CreateDestroy (10 ms)
+[ RUN      ] cuBLAS.SetStreamDestroy
+[       OK ] cuBLAS.SetStreamDestroy (0 ms)
+[ RUN      ] cuBLAS.Sgemm
+/tests/test_cublas.cu:58: Failure
+Expected equality of these values:
+  h_C[0]
+    Which is: 23
+  19.0f
+    Which is: 19
+[  FAILED  ] cuBLAS.Sgemm (29 ms)
+[ RUN      ] cuBLAS.Sgemv
+/tests/test_cublas.cu:113: Failure
+Expected equality of these values:
+  h_y[0]
+    Which is: 5
+  7.0f
+    Which is: 7
+/tests/test_cublas.cu:114: Failure
+Expected equality of these values:
+  h_y[1]
+    Which is: 11
+  10.0f
+    Which is: 10
+[  FAILED  ] cuBLAS.Sgemv (4 ms)
+[ RUN      ] cuBLAS.Saxpy
+[       OK ] cuBLAS.Saxpy (1 ms)
+[ RUN      ] cuBLAS.Scopy
+[       OK ] cuBLAS.Scopy (1 ms)
+[ RUN      ] cuBLAS.Snrm2
+/tests/test_cublas.cu:195: Failure
+The difference between result and 5.0f is 970729717755, which exceeds 1e-5, where
+result evaluates to 970729717760,
+5.0f evaluates to 5, and
+1e-5 evaluates to 1.0000000000000001e-05.
+[  FAILED  ] cuBLAS.Snrm2 (68 ms)
+[ RUN      ] cuBLAS.Sdot
+/tests/test_cublas.cu:220: Failure
+Expected equality of these values:
+  result
+    Which is: 0
+  32.0f
+    Which is: 32
+[  FAILED  ] cuBLAS.Sdot (0 ms)
+[ RUN      ] cuBLAS.Dgemm
+/tests/test_cublas.cu:278: Failure
+The difference between h_C[i] and expected[i] is 18.999999526888132, which exceeds 1e-9, where
+h_C[i] evaluates to 2.0000004731118679,
+expected[i] evaluates to 21, and
+1e-9 evaluates to 1.0000000000000001e-09.
+/tests/test_cublas.cu:278: Failure
+The difference between h_C[i] and expected[i] is 103079231528, which exceeds 1e-9, where
+h_C[i] evaluates to 103079231552,
+expected[i] evaluates to 24, and
+1e-9 evaluates to 1.0000000000000001e-09.
+/tests/test_cublas.cu:278: Failure
+The difference between h_C[i] and expected[i] is 27, which exceeds 1e-9, where
+h_C[i] evaluates to 5.4841286688378366e-322,
+expected[i] evaluates to 27, and
+1e-9 evaluates to 1.0000000000000001e-09.
+/tests/test_cublas.cu:278: Failure
+The difference between h_C[i] and expected[i] is 47, which exceeds 1e-9, where
+h_C[i] evaluates to 5.0888761521648394e-322,
+expected[i] evaluates to 47, and
+1e-9 evaluates to 1.0000000000000001e-09.
+/tests/test_cublas.cu:278: Failure
+The difference between h_C[i] and expected[i] is 54, which exceeds 1e-9, where
+h_C[i] evaluates to 6.8022265946891586e-310,
+expected[i] evaluates to 54, and
+1e-9 evaluates to 1.0000000000000001e-09.
+/tests/test_cublas.cu:278: Failure
+The difference between h_C[i] and expected[i] is 61, which exceeds 1e-9, where
+h_C[i] evaluates to 4.9681934193324489e-310,
+expected[i] evaluates to 61, and
+1e-9 evaluates to 1.0000000000000001e-09.
+[  FAILED  ] cuBLAS.Dgemm (0 ms)
+[ RUN      ] cuBLAS.Dgemv
+/tests/test_cublas.cu:326: Failure
+The difference between h_y[0] and 6.0 is 3.9999995268881321, which exceeds 1e-9, where
+h_y[0] evaluates to 2.0000004731118679,
+6.0 evaluates to 6, and
+1e-9 evaluates to 1.0000000000000001e-09.
+/tests/test_cublas.cu:327: Failure
+The difference between h_y[1] and 15.0 is 103079231537, which exceeds 1e-9, where
+h_y[1] evaluates to 103079231552,
+15.0 evaluates to 15, and
+1e-9 evaluates to 1.0000000000000001e-09.
+[  FAILED  ] cuBLAS.Dgemv (0 ms)
+[ RUN      ] cuBLAS.Dcopy
+/tests/test_cublas.cu:386: Failure
+Expected equality of these values:
+  h_y[i]
+    Which is: 2.0000004731118679
+  h_x[i]
+    Which is: 1
+/tests/test_cublas.cu:386: Failure
+Expected equality of these values:
+  h_y[i]
+    Which is: 103079231552
+  h_x[i]
+    Which is: 2
+/tests/test_cublas.cu:386: Failure
+Expected equality of these values:
+  h_y[i]
+    Which is: 5.4841286688378366e-322
+  h_x[i]
+    Which is: 3
+[  FAILED  ] cuBLAS.Dcopy (0 ms)
+[ RUN      ] cuBLAS.Dnrm2
+/tests/test_cublas.cu:408: Failure
+The difference between result and 5.0 is 5, which exceeds 1e-9, where
+result evaluates to 6.9209583886811576e-310,
+5.0 evaluates to 5, and
+1e-9 evaluates to 1.0000000000000001e-09.
+[  FAILED  ] cuBLAS.Dnrm2 (0 ms)
+[ RUN      ] cuBLAS.Ddot
+/tests/test_cublas.cu:433: Failure
+Expected equality of these values:
+  result
+    Which is: 0
+  32.0
+    Which is: 32
+[  FAILED  ] cuBLAS.Ddot (0 ms)
+[----------] 13 tests from cuBLAS (118 ms total)
+
+[----------] 1 test from CuBLAS
+[ RUN      ] CuBLAS.Daxpy
+/tests/test_cublas.cu:357: Failure
+The difference between h_y[0] and 6.0 is 3.9999995268881321, which exceeds 1e-9, where
+h_y[0] evaluates to 2.0000004731118679,
+6.0 evaluates to 6, and
+1e-9 evaluates to 1.0000000000000001e-09.
+/tests/test_cublas.cu:358: Failure
+The difference between h_y[1] and 9.0 is 103079231543, which exceeds 1e-9, where
+h_y[1] evaluates to 103079231552,
+9.0 evaluates to 9, and
+1e-9 evaluates to 1.0000000000000001e-09.
+/tests/test_cublas.cu:359: Failure
+The difference between h_y[2] and 12.0 is 12, which exceeds 1e-9, where
+h_y[2] evaluates to 5.4841286688378366e-322,
+12.0 evaluates to 12, and
+1e-9 evaluates to 1.0000000000000001e-09.
+[  FAILED  ] CuBLAS.Daxpy (0 ms)
+[----------] 1 test from CuBLAS (0 ms total)
+
+[----------] 21 tests from cuRAND
+[ RUN      ] cuRAND.CreateDestroyGenerator
+[       OK ] cuRAND.CreateDestroyGenerator (0 ms)
+[ RUN      ] cuRAND.CreateDestroyGeneratorHost
+[       OK ] cuRAND.CreateDestroyGeneratorHost (0 ms)
+[ RUN      ] cuRAND.SetSeed
+[       OK ] cuRAND.SetSeed (0 ms)
+[ RUN      ] cuRAND.GenerateDevice
+[       OK ] cuRAND.GenerateDevice (0 ms)
+[ RUN      ] cuRAND.GenerateHost
+[       OK ] cuRAND.GenerateHost (0 ms)
+[ RUN      ] cuRAND.GenerateLongLongDevice
+[       OK ] cuRAND.GenerateLongLongDevice (0 ms)
+[ RUN      ] cuRAND.GenerateLongLongHost
+[       OK ] cuRAND.GenerateLongLongHost (0 ms)
+[ RUN      ] cuRAND.GenerateUniformDevice
+/tests/test_curand.cu:137: Failure
+Expected: (host_output[i]) < (1.0f), actual: 1 vs 1
+/tests/test_curand.cu:137: Failure
+Expected: (host_output[i]) < (1.0f), actual: 2 vs 1
+/tests/test_curand.cu:137: Failure
+Expected: (host_output[i]) < (1.0f), actual: 3 vs 1
+/tests/test_curand.cu:137: Failure
+Expected: (host_output[i]) < (1.0f), actual: 46 vs 1
+/tests/test_curand.cu:136: Failure
+Expected: (host_output[i]) >= (0.0f), actual: -3.31581e+07 vs 0
+[  FAILED  ] cuRAND.GenerateUniformDevice (0 ms)
+[ RUN      ] cuRAND.GenerateUniformHost
+/tests/test_curand.cu:157: Failure
+Expected: (output[i]) < (1.0f), actual: 1 vs 1
+/tests/test_curand.cu:157: Failure
+Expected: (output[i]) < (1.0f), actual: 2 vs 1
+/tests/test_curand.cu:157: Failure
+Expected: (output[i]) < (1.0f), actual: 3 vs 1
+/tests/test_curand.cu:157: Failure
+Expected: (output[i]) < (1.0f), actual: 46 vs 1
+/tests/test_curand.cu:156: Failure
+Expected: (output[i]) >= (0.0f), actual: -3.31581e+07 vs 0
+[  FAILED  ] cuRAND.GenerateUniformHost (0 ms)
+[ RUN      ] cuRAND.GenerateNormalDevice
+/tests/test_curand.cu:186: Failure
+The difference between sample_mean and mean is nan, which exceeds 0.2f, where
+sample_mean evaluates to -nan,
+mean evaluates to 5, and
+0.2f evaluates to 0.20000000298023224.
+/tests/test_curand.cu:194: Failure
+The difference between sample_stddev and stddev is nan, which exceeds 0.3f, where
+sample_stddev evaluates to -nan,
+stddev evaluates to 2, and
+0.3f evaluates to 0.30000001192092896.
+[  FAILED  ] cuRAND.GenerateNormalDevice (0 ms)
+[ RUN      ] cuRAND.GenerateNormalHost
+/tests/test_curand.cu:219: Failure
+The difference between sample_mean and mean is nan, which exceeds 0.2f, where
+sample_mean evaluates to -nan,
+mean evaluates to 5, and
+0.2f evaluates to 0.20000000298023224.
+/tests/test_curand.cu:227: Failure
+The difference between sample_stddev and stddev is nan, which exceeds 0.3f, where
+sample_stddev evaluates to -nan,
+stddev evaluates to 2, and
+0.3f evaluates to 0.30000001192092896.
+[  FAILED  ] cuRAND.GenerateNormalHost (0 ms)
+[ RUN      ] cuRAND.GenerateLogNormalDevice
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31581e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31585e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31585e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -nan vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -nan vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55286e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31511e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31495e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55289e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31585e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31585e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55291e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55293e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -6.07817e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55374e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55375e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55309e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55311e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55313e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31495e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55318e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.5532e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55322e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -nan vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -nan vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55324e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -6.07817e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55325e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55327e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.5533e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55332e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55334e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31585e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -6.07817e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31585e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -nan vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -nan vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:251: Failure
+Expected: (host_output[i]) > (0.0f), actual: 0 vs 0
+[  FAILED  ] cuRAND.GenerateLogNormalDevice (7 ms)
+[ RUN      ] cuRAND.GenerateLogNormalHost
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31581e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31585e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31585e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -nan vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -nan vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55286e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31511e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31495e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55289e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31585e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31585e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55291e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55293e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -6.07817e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55374e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55375e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55309e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55311e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55313e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31495e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55318e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.5532e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55322e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -nan vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -nan vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55324e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -6.07817e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55325e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55327e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.5533e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55332e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32889e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32888e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55334e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32949e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.32948e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31358e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.54903e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31585e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -6.07817e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31585e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -1.55206e+13 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -nan vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -nan vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: -3.31299e+07 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+/tests/test_curand.cu:273: Failure
+Expected: (output[i]) > (0.0f), actual: 0 vs 0
+[  FAILED  ] cuRAND.GenerateLogNormalHost (6 ms)
+[ RUN      ] cuRAND.GeneratePoissonDevice
+/tests/test_curand.cu:302: Failure
+The difference between sample_mean and lambda is 625319077.78699994, which exceeds 0.2, where
+sample_mean evaluates to 625319082.28699994,
+lambda evaluates to 4.5, and
+0.2 evaluates to 0.20000000000000001.
+[  FAILED  ] cuRAND.GeneratePoissonDevice (0 ms)
+[ RUN      ] cuRAND.GeneratePoissonHost
+/tests/test_curand.cu:326: Failure
+The difference between sample_mean and lambda is 625319077.78699994, which exceeds 0.2, where
+sample_mean evaluates to 625319082.28699994,
+lambda evaluates to 4.5, and
+0.2 evaluates to 0.20000000000000001.
+[  FAILED  ] cuRAND.GeneratePoissonHost (0 ms)
+[ RUN      ] cuRAND.GenerateUniformDoubleDevice
+/tests/test_curand.cu:348: Failure
+Expected: (host_output[i]) < (1.0), actual: 2 vs 1
+/tests/test_curand.cu:348: Failure
+Expected: (host_output[i]) < (1.0), actual: 1.03079e+11 vs 1
+[  FAILED  ] cuRAND.GenerateUniformDoubleDevice (0 ms)
+[ RUN      ] cuRAND.GenerateUniformDoubleHost
+/tests/test_curand.cu:368: Failure
+Expected: (output[i]) < (1.0), actual: 2 vs 1
+/tests/test_curand.cu:368: Failure
+Expected: (output[i]) < (1.0), actual: 1.03079e+11 vs 1
+[  FAILED  ] cuRAND.GenerateUniformDoubleHost (0 ms)
+[ RUN      ] cuRAND.GenerateNormalDoubleDevice
+/tests/test_curand.cu:397: Failure
+The difference between sample_mean and mean is nan, which exceeds 0.2, where
+sample_mean evaluates to -nan,
+mean evaluates to 10, and
+0.2 evaluates to 0.20000000000000001.
+/tests/test_curand.cu:405: Failure
+The difference between sample_stddev and stddev is nan, which exceeds 0.3, where
+sample_stddev evaluates to -nan,
+stddev evaluates to 3, and
+0.3 evaluates to 0.29999999999999999.
+[  FAILED  ] cuRAND.GenerateNormalDoubleDevice (0 ms)
+[ RUN      ] cuRAND.GenerateNormalDoubleHost
+/tests/test_curand.cu:430: Failure
+The difference between sample_mean and mean is nan, which exceeds 0.2, where
+sample_mean evaluates to -nan,
+mean evaluates to 10, and
+0.2 evaluates to 0.20000000000000001.
+/tests/test_curand.cu:438: Failure
+The difference between sample_stddev and stddev is nan, which exceeds 0.3, where
+sample_stddev evaluates to -nan,
+stddev evaluates to 3, and
+0.3 evaluates to 0.29999999999999999.
+[  FAILED  ] cuRAND.GenerateNormalDoubleHost (0 ms)
+[ RUN      ] cuRAND.GenerateLogNormalDoubleDevice
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: -nan vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: -nan vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: -nan vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:462: Failure
+Expected: (host_output[i]) > (0.0), actual: 0 vs 0
+[  FAILED  ] cuRAND.GenerateLogNormalDoubleDevice (7 ms)
+[ RUN      ] cuRAND.GenerateLogNormalDoubleHost
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: -nan vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: -nan vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: -nan vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+/tests/test_curand.cu:484: Failure
+Expected: (output[i]) > (0.0), actual: 0 vs 0
+[  FAILED  ] cuRAND.GenerateLogNormalDoubleHost (2 ms)
+[----------] 21 tests from cuRAND (25 ms total)
+
+[----------] 34 tests from cuFFT
+[ RUN      ] cuFFT.cufftCreateDestroy
+[       OK ] cuFFT.cufftCreateDestroy (0 ms)
+[ RUN      ] cuFFT.Plan1D
+[       OK ] cuFFT.Plan1D (0 ms)
+[ RUN      ] cuFFT.Plan2D
+[       OK ] cuFFT.Plan2D (0 ms)
+[ RUN      ] cuFFT.Plan3D
+[       OK ] cuFFT.Plan3D (0 ms)
+[ RUN      ] cuFFT.Estimate1D
+[       OK ] cuFFT.Estimate1D (0 ms)
+[ RUN      ] cuFFT.Estimate2D
+[       OK ] cuFFT.Estimate2D (0 ms)
+[ RUN      ] cuFFT.Estimate3D
+[       OK ] cuFFT.Estimate3D (0 ms)
+[ RUN      ] cuFFT.EstimateMany
+[       OK ] cuFFT.EstimateMany (0 ms)
+[ RUN      ] cuFFT.Plan1DAndExecC2C
+[       OK ] cuFFT.Plan1DAndExecC2C (0 ms)
+[ RUN      ] cuFFT.CreateMakePlan1dAndExecC2C
+[       OK ] cuFFT.CreateMakePlan1dAndExecC2C (0 ms)
+[ RUN      ] cuFFT.MakePlan2D
+[       OK ] cuFFT.MakePlan2D (0 ms)
+[ RUN      ] cuFFT.MakePlan3D
+[       OK ] cuFFT.MakePlan3D (0 ms)
+[ RUN      ] cuFFT.MakePlanMany
+[       OK ] cuFFT.MakePlanMany (0 ms)
+[ RUN      ] cuFFT.MakePlanMany64
+[       OK ] cuFFT.MakePlanMany64 (0 ms)
+[ RUN      ] cuFFT.Plan2DAndExecC2C
+[       OK ] cuFFT.Plan2DAndExecC2C (0 ms)
+[ RUN      ] cuFFT.ExecR2CAndC2R
+/tests/test_cufft.cu:292: Failure
+The difference between input[i] and output[i] is 0.0625, which exceeds 1e-3f, where
+input[i] evaluates to 0,
+output[i] evaluates to 0.0625, and
+1e-3f evaluates to 0.0010000000474974513.
+[  FAILED  ] cuFFT.ExecR2CAndC2R (0 ms)
+[ RUN      ] cuFFT.GetSize1D
+[       OK ] cuFFT.GetSize1D (0 ms)
+[ RUN      ] cuFFT.GetSize2D
+[       OK ] cuFFT.GetSize2D (0 ms)
+[ RUN      ] cuFFT.GetSize3D
+[       OK ] cuFFT.GetSize3D (0 ms)
+[ RUN      ] cuFFT.GetSizeMany
+[       OK ] cuFFT.GetSizeMany (0 ms)
+[ RUN      ] cuFFT.GetSizeMany64
+[       OK ] cuFFT.GetSizeMany64 (0 ms)
+[ RUN      ] cuFFT.GetSize
+[       OK ] cuFFT.GetSize (0 ms)
+[ RUN      ] cuFFT.SetWorkArea
+[       OK ] cuFFT.SetWorkArea (0 ms)
+[ RUN      ] cuFFT.SetAutoAllocation
+[       OK ] cuFFT.SetAutoAllocation (0 ms)
+[ RUN      ] cuFFT.GetVersion
+[       OK ] cuFFT.GetVersion (0 ms)
+[ RUN      ] cuFFT.SetStream
+[       OK ] cuFFT.SetStream (0 ms)
+[ RUN      ] cuFFT.ExecZ2Z
+[       OK ] cuFFT.ExecZ2Z (0 ms)
+[ RUN      ] cuFFT.ExecD2Z
+[       OK ] cuFFT.ExecD2Z (0 ms)
+[ RUN      ] cuFFT.ExecZ2D
+[       OK ] cuFFT.ExecZ2D (0 ms)
+[ RUN      ] cuFFT.XtSetGPUs
+[       OK ] cuFFT.XtSetGPUs (0 ms)
+[ RUN      ] cuFFT.XtMakePlanMany
+EXCEPTION - function cufftXtMakePlanMany not supported in GVIRTUS
+[       OK ] cuFFT.XtMakePlanMany (0 ms)
+[ RUN      ] cuFFT.XtMallocFree
+[       OK ] cuFFT.XtMallocFree (0 ms)
+[ RUN      ] cuFFT.CufftXtMallocMemcpyFree
+/tests/test_cufft.cu:595: Failure
+Expected equality of these values:
+  hostData[i]
+    Which is: 0
+  static_cast<float>(i)
+    Which is: 1
+[  FAILED  ] cuFFT.CufftXtMallocMemcpyFree (0 ms)
+[ RUN      ] cuFFT.CufftXtExecDescriptorC2C
+/tests/test_cufft.cu:649: Failure
+The difference between hostData[i].x / N and static_cast<float>(i) is 0.875, which exceeds 1e-3, where
+hostData[i].x / N evaluates to 0.125,
+static_cast<float>(i) evaluates to 1, and
+1e-3 evaluates to 0.001.
+[  FAILED  ] cuFFT.CufftXtExecDescriptorC2C (0 ms)
+[----------] 34 tests from cuFFT (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 78 tests from 5 test suites ran. (226 ms total)
+[  PASSED  ] 50 tests.
+[  FAILED  ] 28 tests, listed below:
+[  FAILED  ] cudaRT.EventCreateRecordSynchronizeElapsedTime
+[  FAILED  ] cuBLAS.Sgemm
+[  FAILED  ] cuBLAS.Sgemv
+[  FAILED  ] cuBLAS.Snrm2
+[  FAILED  ] cuBLAS.Sdot
+[  FAILED  ] cuBLAS.Dgemm
+[  FAILED  ] cuBLAS.Dgemv
+[  FAILED  ] cuBLAS.Dcopy
+[  FAILED  ] cuBLAS.Dnrm2
+[  FAILED  ] cuBLAS.Ddot
+[  FAILED  ] CuBLAS.Daxpy
+[  FAILED  ] cuRAND.GenerateUniformDevice
+[  FAILED  ] cuRAND.GenerateUniformHost
+[  FAILED  ] cuRAND.GenerateNormalDevice
+[  FAILED  ] cuRAND.GenerateNormalHost
+[  FAILED  ] cuRAND.GenerateLogNormalDevice
+[  FAILED  ] cuRAND.GenerateLogNormalHost
+[  FAILED  ] cuRAND.GeneratePoissonDevice
+[  FAILED  ] cuRAND.GeneratePoissonHost
+[  FAILED  ] cuRAND.GenerateUniformDoubleDevice
+[  FAILED  ] cuRAND.GenerateUniformDoubleHost
+[  FAILED  ] cuRAND.GenerateNormalDoubleDevice
+[  FAILED  ] cuRAND.GenerateNormalDoubleHost
+[  FAILED  ] cuRAND.GenerateLogNormalDoubleDevice
+[  FAILED  ] cuRAND.GenerateLogNormalDoubleHost
+[  FAILED  ] cuFFT.ExecR2CAndC2R
+[  FAILED  ] cuFFT.CufftXtMallocMemcpyFree
+[  FAILED  ] cuFFT.CufftXtExecDescriptorC2C
+
+28 FAILED TESTS

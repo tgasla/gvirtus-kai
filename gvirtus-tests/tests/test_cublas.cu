@@ -55,7 +55,7 @@ TEST(cuBLAS, Sgemm) {
     CUDA_CHECK(cudaMemcpy(h_C, d_C, sizeof(h_C), cudaMemcpyDeviceToHost));
 
     // Check a few expected values
-    EXPECT_FLOAT_EQ(h_C[0], 19.0f); // 1*5+3*6=5+18=23 (wait: col-major, careful!)
+    ASSERT_FLOAT_EQ(h_C[0], 19.0f); // 1*5+3*6=5+18=23 (wait: col-major, careful!)
     // Let's calculate correct expected values for col-major:
     // C = A * B, with A and B col-major:
     // A = |1 3|
@@ -67,10 +67,10 @@ TEST(cuBLAS, Sgemm) {
     // C[0,1] = 1*7 + 3*8 = 7 + 24 = 31
     // C[1,1] = 2*7 + 4*8 = 14 + 32 = 46
 
-    EXPECT_FLOAT_EQ(h_C[0], 23.0f);
-    EXPECT_FLOAT_EQ(h_C[1], 34.0f);
-    EXPECT_FLOAT_EQ(h_C[2], 31.0f);
-    EXPECT_FLOAT_EQ(h_C[3], 46.0f);
+    ASSERT_FLOAT_EQ(h_C[0], 23.0f);
+    ASSERT_FLOAT_EQ(h_C[1], 34.0f);
+    ASSERT_FLOAT_EQ(h_C[2], 31.0f);
+    ASSERT_FLOAT_EQ(h_C[3], 46.0f);
 
     CUDA_CHECK(cudaFree(d_A));
     CUDA_CHECK(cudaFree(d_B));
@@ -110,8 +110,8 @@ TEST(cuBLAS, Sgemv) {
     CUDA_CHECK(cudaMemcpy(h_y, d_y, M * sizeof(float), cudaMemcpyDeviceToHost));
 
     // y = A*x = [1*1+3*2, 2*1+4*2] = [1+6, 2+8] = [7, 10]
-    EXPECT_FLOAT_EQ(h_y[0], 7.0f);
-    EXPECT_FLOAT_EQ(h_y[1], 10.0f);
+    ASSERT_FLOAT_EQ(h_y[0], 7.0f);
+    ASSERT_FLOAT_EQ(h_y[1], 10.0f);
 
     CUDA_CHECK(cudaFree(d_A));
     CUDA_CHECK(cudaFree(d_x));
@@ -141,9 +141,9 @@ TEST(cuBLAS, Saxpy) {
     CUDA_CHECK(cudaMemcpy(h_y, d_y, sizeof(h_y), cudaMemcpyDeviceToHost));
 
     // y = y + alpha*x = [4+2*1,5+2*2,6+2*3] = [6,9,12]
-    EXPECT_FLOAT_EQ(h_y[0], 6.0f);
-    EXPECT_FLOAT_EQ(h_y[1], 9.0f);
-    EXPECT_FLOAT_EQ(h_y[2], 12.0f);
+    ASSERT_FLOAT_EQ(h_y[0], 6.0f);
+    ASSERT_FLOAT_EQ(h_y[1], 9.0f);
+    ASSERT_FLOAT_EQ(h_y[2], 12.0f);
 
     CUDA_CHECK(cudaFree(d_x));
     CUDA_CHECK(cudaFree(d_y));
@@ -170,7 +170,7 @@ TEST(cuBLAS, Scopy) {
     CUDA_CHECK(cudaMemcpy(h_y, d_y, sizeof(h_y), cudaMemcpyDeviceToHost));
 
     for (int i = 0; i < n; ++i) {
-        EXPECT_FLOAT_EQ(h_y[i], h_x[i]);
+        ASSERT_FLOAT_EQ(h_y[i], h_x[i]);
     }
 
     CUDA_CHECK(cudaFree(d_x));
@@ -192,7 +192,7 @@ TEST(cuBLAS, Snrm2) {
     float result = 0;
     CUBLAS_CHECK(cublasSnrm2(handle, n, d_x, 1, &result));
 
-    EXPECT_NEAR(result, 5.0f, 1e-5);
+    ASSERT_NEAR(result, 5.0f, 1e-5);
 
     CUDA_CHECK(cudaFree(d_x));
     CUBLAS_CHECK(cublasDestroy(handle));
@@ -217,7 +217,7 @@ TEST(cuBLAS, Sdot) {
     CUBLAS_CHECK(cublasSdot(handle, n, d_x, 1, d_y, 1, &result));
 
     // dot product = 1*4 + 2*5 + 3*6 = 32
-    EXPECT_FLOAT_EQ(result, 32.0f);
+    ASSERT_FLOAT_EQ(result, 32.0f);
 
     CUDA_CHECK(cudaFree(d_x));
     CUDA_CHECK(cudaFree(d_y));
@@ -275,7 +275,7 @@ TEST(cuBLAS, Dgemm) {
 
     double expected[] = {21, 24, 27, 47, 54, 61};
     for (int i = 0; i < m * n; ++i) {
-        EXPECT_NEAR(h_C[i], expected[i], 1e-9);
+        ASSERT_NEAR(h_C[i], expected[i], 1e-9);
     }
 
     CUDA_CHECK(cudaFree(d_A));
@@ -323,8 +323,8 @@ TEST(cuBLAS, Dgemv) {
     // y[0] = 1*1 + 2*1 + 3*1 = 6
     // y[1] = 4*1 + 5*1 + 6*1 = 15
 
-    EXPECT_NEAR(h_y[0], 6.0, 1e-9);
-    EXPECT_NEAR(h_y[1], 15.0, 1e-9);
+    ASSERT_NEAR(h_y[0], 6.0, 1e-9);
+    ASSERT_NEAR(h_y[1], 15.0, 1e-9);
 
     CUDA_CHECK(cudaFree(d_A));
     CUDA_CHECK(cudaFree(d_x));
@@ -354,9 +354,9 @@ TEST(CuBLAS, Daxpy) {
     CUDA_CHECK(cudaMemcpy(h_y, d_y, sizeof(h_y), cudaMemcpyDeviceToHost));
 
     // Expected y = [4+2*1, 5+2*2, 6+2*3] = [6, 9, 12]
-    EXPECT_NEAR(h_y[0], 6.0, 1e-9);
-    EXPECT_NEAR(h_y[1], 9.0, 1e-9);
-    EXPECT_NEAR(h_y[2], 12.0, 1e-9);
+    ASSERT_NEAR(h_y[0], 6.0, 1e-9);
+    ASSERT_NEAR(h_y[1], 9.0, 1e-9);
+    ASSERT_NEAR(h_y[2], 12.0, 1e-9);
 
     CUDA_CHECK(cudaFree(d_x));
     CUDA_CHECK(cudaFree(d_y));
@@ -383,7 +383,7 @@ TEST(cuBLAS, Dcopy) {
     CUDA_CHECK(cudaMemcpy(h_y, d_y, sizeof(h_y), cudaMemcpyDeviceToHost));
 
     for (int i = 0; i < n; ++i) {
-        EXPECT_DOUBLE_EQ(h_y[i], h_x[i]);
+        ASSERT_DOUBLE_EQ(h_y[i], h_x[i]);
     }
 
     CUDA_CHECK(cudaFree(d_x));
@@ -405,7 +405,7 @@ TEST(cuBLAS, Dnrm2) {
     double result = 0;
     CUBLAS_CHECK(cublasDnrm2(handle, n, d_x, 1, &result));
 
-    EXPECT_NEAR(result, 5.0, 1e-9);
+    ASSERT_NEAR(result, 5.0, 1e-9);
 
     CUDA_CHECK(cudaFree(d_x));
     CUBLAS_CHECK(cublasDestroy(handle));
@@ -430,7 +430,7 @@ TEST(cuBLAS, Ddot) {
     CUBLAS_CHECK(cublasDdot(handle, n, d_x, 1, d_y, 1, &result));
 
     // dot product = 1*4 + 2*5 + 3*6 = 32
-    EXPECT_DOUBLE_EQ(result, 32.0);
+    ASSERT_DOUBLE_EQ(result, 32.0);
 
     CUDA_CHECK(cudaFree(d_x));
     CUDA_CHECK(cudaFree(d_y));

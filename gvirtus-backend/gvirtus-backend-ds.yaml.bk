@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: gvirtus-backend
+  namespace: gvirtus-system
+  labels:
+    app.kubernetes.io/name: gvirtus-backend
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: gvirtus
+    app.kubernetes.io/version: "0.1.0-alpha"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: gvirtus-backend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: gvirtus-backend
+        app.kubernetes.io/component: backend
+        app.kubernetes.io/part-of: gvirtus
+        app.kubernetes.io/version: "0.1.0-alpha"
+    spec:
+      nodeSelector:
+        gvirtus.io/backend.allowed: "true"
+        nvidia.com/gpu.present: "true"
+      containers:
+        - name: gvirtus-backend
+          image: taslanidis/gvirtus:cuda11.8.0-cudnn8-ubuntu22.04
+          imagePullPolicy: Always
+          command: ["/bin/sh", "-c", "${GVIRTUS_HOME}/bin/gvirtus-backend ${GVIRTUS_HOME}/etc/properties.json"]
+          ports:
+            - containerPort: 9999
+      restartPolicy: Always

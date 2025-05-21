@@ -9,10 +9,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /tests
 COPY CMakeLists.txt .
-COPY test_cudart.cu .
-COPY test_cublas.cu .
-COPY test_curand.cu .
-COPY test_cufft.cu .
+COPY tests/* .
 ENV LD_LIBRARY_PATH=${GVIRTUS_HOME}/lib/frontend:${LD_LIBRARY_PATH}
 # Build the tests
 RUN mkdir build && cd build && cmake .. && make

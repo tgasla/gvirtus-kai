@@ -25,9 +25,59 @@ spec:
         nvidia.com/gpu.present: "true"
       containers:
         - name: gvirtus-backend
-          image: taslanidis/gvirtus:cuda11.8.0-cudnn8-ubuntu22.04
-          imagePullPolicy: Always
-          command: ["/bin/sh", "-c", "${GVIRTUS_HOME}/bin/gvirtus-backend ${GVIRTUS_HOME}/etc/properties.json"]
+          image: taslanidis/gvirtus-dependencies:cuda12.6.3-cudnn-ubuntu22.04
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9999
+          volumeMounts:
+            # - name: gvirtus
+            #   mountPath: /gvirtus/
+            - name: cmake-volume
+              mountPath: /gvirtus/cmake/
+            - name: etc-volume
+              mountPath: /gvirtus/etc
+            - name: include-volume
+              mountPath: /gvirtus/include/
+            - name: plugins-volume
+              mountPath: /gvirtus/plugins/
+            - name: src-volume
+              mountPath: /gvirtus/src
+            - name: tools-volume
+              mountPath: /gvirtus/tools/
+            - name: cmakelists-volume
+              mountPath: /gvirtus/CMakeLists.txt
+              subPath: CMakeLists.txt
+      volumes:
+      # - name: gvirtus
+      #   hostPath:
+      #     path: /home/taslanidis/git/GVirtuS
+      #     type: Directory
+        - name: cmake-volume
+          hostPath:
+            path: /home/taslanidis/git/GVirtuS/cmake
+            type: Directory
+        - name: etc-volume
+          hostPath:
+            path: /home/taslanidis/git/GVirtuS/etc
+            type: Directory
+        - name: include-volume
+          hostPath:
+            path: /home/taslanidis/git/GVirtuS/include
+            type: Directory
+        - name: plugins-volume
+          hostPath:
+            path: /home/taslanidis/git/GVirtuS/plugins
+            type: Directory
+        - name: src-volume
+          hostPath:
+            path: /home/taslanidis/git/GVirtuS/src
+            type: Directory
+        - name: tools-volume
+          hostPath:
+            path: /home/taslanidis/git/GVirtuS/tools
+            type: Directory
+        - name: cmakelists-volume
+          hostPath:
+            path: /home/taslanidis/git/GVirtuS
+            type: Directory
       restartPolicy: Always

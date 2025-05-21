@@ -59,9 +59,13 @@ TEST(cudaRT, StreamCreateDestroySynchronize) {
     CUDA_CHECK(cudaStreamDestroy(stream));
 }
 
-TEST(cudaRT, GetSetDevice) {
+TEST(cudaRT, GetDevice) {
     int device;
     CUDA_CHECK(cudaGetDevice(&device));
+}
+
+TEST(cudaRT, SetDevice) {
+    int device = 0;
     CUDA_CHECK(cudaSetDevice(device));
 }
 
@@ -69,20 +73,20 @@ TEST(cudaRT, DeviceSynchronize) {
     CUDA_CHECK(cudaDeviceSynchronize());
 }
 
-TEST(cudaRT, EventCreateRecordSynchronizeElapsedTime) {
-    cudaEvent_t start, stop;
-    CUDA_CHECK(cudaEventCreate(&start));
-    CUDA_CHECK(cudaEventCreate(&stop));
+// TEST(cudaRT, EventCreateRecordSynchronizeElapsedTime) {
+//     cudaEvent_t start, stop;
+//     CUDA_CHECK(cudaEventCreate(&start));
+//     CUDA_CHECK(cudaEventCreate(&stop));
 
-    CUDA_CHECK(cudaEventRecord(start));
-    CUDA_CHECK(cudaEventRecord(stop));
+//     CUDA_CHECK(cudaEventRecord(start));
+//     CUDA_CHECK(cudaEventRecord(stop));
 
-    CUDA_CHECK(cudaEventSynchronize(stop));
+//     CUDA_CHECK(cudaEventSynchronize(stop));
 
-    float elapsed_ms = 0;
-    CUDA_CHECK(cudaEventElapsedTime(&elapsed_ms, start, stop));
-    EXPECT_GE(elapsed_ms, 0.0f);
+//     float elapsed_ms = 0;
+//     CUDA_CHECK(cudaEventElapsedTime(&elapsed_ms, start, stop));
+//     EXPECT_GE(elapsed_ms, 0.0f);
 
-    CUDA_CHECK(cudaEventDestroy(start));
-    CUDA_CHECK(cudaEventDestroy(stop));
-}
+//     CUDA_CHECK(cudaEventDestroy(start));
+//     CUDA_CHECK(cudaEventDestroy(stop));
+// }

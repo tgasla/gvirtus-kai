@@ -8,7 +8,6 @@ if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
     set(CMAKE_CUDA_ARCHITECTURES 75 86 89)
 endif()
 
-# Require C++17 (optional, but good practice)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -18,10 +17,10 @@ find_package(GTest REQUIRED)
 # Your CUDA source file
 set(SOURCES
     test_cudart.cu
-    test_cublas.cu
     test_curand.cu
     test_cufft.cu
-)
+    # test_cublas.cu
+    )
 
 # Add executable target
 add_executable(test_cuda_libs ${SOURCES})

@@ -183,7 +183,7 @@ TEST(cuRAND, GenerateNormalDevice) {
         sum += host_output[i];
     }
     float sample_mean = sum / n;
-    EXPECT_NEAR(sample_mean, mean, 0.2f);
+    ASSERT_NEAR(sample_mean, mean, 0.2f);
 
     float variance_sum = 0.0f;
     for (size_t i = 0; i < n; ++i) {
@@ -191,7 +191,7 @@ TEST(cuRAND, GenerateNormalDevice) {
         variance_sum += diff * diff;
     }
     float sample_stddev = sqrt(variance_sum / n);
-    EXPECT_NEAR(sample_stddev, stddev, 0.3f);
+    ASSERT_NEAR(sample_stddev, stddev, 0.3f);
 
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(cudaFree(output), cudaSuccess);
@@ -216,7 +216,7 @@ TEST(cuRAND, GenerateNormalHost) {
         sum += output[i];
     }
     float sample_mean = sum / n;
-    EXPECT_NEAR(sample_mean, mean, 0.2f);
+    ASSERT_NEAR(sample_mean, mean, 0.2f);
 
     float variance_sum = 0.0f;
     for (size_t i = 0; i < n; ++i) {
@@ -224,7 +224,7 @@ TEST(cuRAND, GenerateNormalHost) {
         variance_sum += diff * diff;
     }
     float sample_stddev = sqrt(variance_sum / n);
-    EXPECT_NEAR(sample_stddev, stddev, 0.3f);
+    ASSERT_NEAR(sample_stddev, stddev, 0.3f);
 
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
     free(output);
@@ -299,7 +299,7 @@ TEST(cuRAND, GeneratePoissonDevice) {
         sum += host_output[i];
     }
     double sample_mean = sum / n;
-    EXPECT_NEAR(sample_mean, lambda, 0.2);
+    ASSERT_NEAR(sample_mean, lambda, 0.2);
 
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(cudaFree(output), cudaSuccess);
@@ -323,7 +323,7 @@ TEST(cuRAND, GeneratePoissonHost) {
         sum += output[i];
     }
     double sample_mean = sum / n;
-    EXPECT_NEAR(sample_mean, lambda, 0.2);
+    ASSERT_NEAR(sample_mean, lambda, 0.2);
 
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
     free(output);
@@ -394,7 +394,7 @@ TEST(cuRAND, GenerateNormalDoubleDevice) {
         sum += host_output[i];
     }
     double sample_mean = sum / n;
-    EXPECT_NEAR(sample_mean, mean, 0.2);
+    ASSERT_NEAR(sample_mean, mean, 0.2);
 
     double variance_sum = 0.0;
     for (size_t i = 0; i < n; ++i) {
@@ -402,7 +402,7 @@ TEST(cuRAND, GenerateNormalDoubleDevice) {
         variance_sum += diff * diff;
     }
     double sample_stddev = sqrt(variance_sum / n);
-    EXPECT_NEAR(sample_stddev, stddev, 0.3);
+    ASSERT_NEAR(sample_stddev, stddev, 0.3);
 
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
     ASSERT_EQ(cudaFree(output), cudaSuccess);
@@ -427,7 +427,7 @@ TEST(cuRAND, GenerateNormalDoubleHost) {
         sum += output[i];
     }
     double sample_mean = sum / n;
-    EXPECT_NEAR(sample_mean, mean, 0.2);
+    ASSERT_NEAR(sample_mean, mean, 0.2);
 
     double variance_sum = 0.0;
     for (size_t i = 0; i < n; ++i) {
@@ -435,7 +435,7 @@ TEST(cuRAND, GenerateNormalDoubleHost) {
         variance_sum += diff * diff;
     }
     double sample_stddev = sqrt(variance_sum / n);
-    EXPECT_NEAR(sample_stddev, stddev, 0.3);
+    ASSERT_NEAR(sample_stddev, stddev, 0.3);
 
     ASSERT_EQ(curandDestroyGenerator(generator), CURAND_STATUS_SUCCESS);
     free(output);
