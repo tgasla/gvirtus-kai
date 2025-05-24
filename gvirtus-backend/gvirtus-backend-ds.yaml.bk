@@ -1,3 +1,6 @@
+# This DaemonSet uses the old GVirtuS image using CUDA 11.8.0.
+# Please ignore this and use the newer DaemonSet yaml `gvirtus-backend-ds.yaml` which uses the most recent GVirtuS image with CUDA 12.6.3.
+
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:

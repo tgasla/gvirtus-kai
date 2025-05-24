@@ -99,12 +99,15 @@ In the future, this tool aims to integrate with the KAI Scheduler to possibly le
 
 Before setting up GVirtuS-KAI, ensure the following requirements are met:
 
-- Kubernetes Cluster: Install a Kubernetes distribution like [k3s](https://docs.k3s.io/quick-start) on all nodes you want to include in the cluster.
+- **Kubernetes Cluster:** Install a Kubernetes distribution like [k3s](https://docs.k3s.io/quick-start) on all nodes you want to include in the cluster. Alternative options are [kind](https://kind.sigs.k8s.io/) or [kubeadm](https://kubernetes.io/docs/reference/setup-tools/kubeadm/).
 
-- NVIDIA GPU Operator: On nodes equipped with a **physical NVIDIA GPU**, install the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/overview.html). These nodes will be eligible to act as GVirtuS backends.
+    > [!TIP]
+    > 👉 Follow our [k3s-cheatsheet](docs/k3s-cheatsheet.md) for installation instructions and tips.
 
-> [!IMPORTANT]
-> Not all GPU-equipped nodes will automatically run GVirtuS backends. You will have the flexibility to **opt-in** specific nodes by labeling them manually. This provides fine-grained control over which nodes expose their GPU devices for virtualization.
+- **NVIDIA GPU Operator:** On nodes equipped with a **physical NVIDIA GPU**, install the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/overview.html). These nodes will be eligible to act as GVirtuS backends.
+
+    > [!IMPORTANT]
+    > Not all GPU-equipped nodes will automatically run GVirtuS backends. You will have the flexibility to **opt-in** specific nodes by labeling them manually. This provides fine-grained control over which nodes expose their GPU devices for virtualization.
 
 
 ## Installation
@@ -124,31 +127,31 @@ cd gvirtus-kai
 Create the `gvirtus-system` namespace:
 
 ```
-kubectl apply -f gvirtus-ns/.
+kubectl apply -f gvirtus-ns
 ```
 
 Create the `gvirtus-device-plugin` daemonset:
 
 ```
-kubectl apply -f gvirtus-device-plugin/.
+kubectl apply -f gvirtus-device-plugin
 ```
 
 Create the `gvirtus-labeler` daemonset:
 
 ```
-kubectl apply -f gvirtus-labeler/.
+kubectl apply -f gvirtus-labeler
 ```
 
 Create the `gvirtus-backend` daemonset and service:
 
 ```
-kubectl apply -f gvirtus-backend/.
+kubectl apply -f gvirtus-backend
 ```
 
 Create the `gvirtus-webhook` mutatingwebhookconfiguration, deployment and service:
 
 ```
-kubectl apply -f gvirtus-webhook/.
+kubectl apply -f gvirtus-webhook
 ```
 
 After applying all kubernetes manifests, you may now select which node(s) you want to serve as GVirtuS backends. You may do so, by manually labeling each node with the following command:

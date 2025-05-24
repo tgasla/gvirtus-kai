@@ -30,8 +30,6 @@ spec:
           ports:
             - containerPort: 9999
           volumeMounts:
-            # - name: gvirtus
-            #   mountPath: /gvirtus/
             - name: cmake-volume
               mountPath: /gvirtus/cmake/
             - name: etc-volume
@@ -48,10 +46,6 @@ spec:
               mountPath: /gvirtus/CMakeLists.txt
               subPath: CMakeLists.txt
       volumes:
-      # - name: gvirtus
-      #   hostPath:
-      #     path: /home/taslanidis/git/GVirtuS
-      #     type: Directory
         - name: cmake-volume
           hostPath:
             path: /home/taslanidis/git/GVirtuS/cmake
