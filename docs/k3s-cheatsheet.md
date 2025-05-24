@@ -21,6 +21,9 @@ To install K3S on your master node, use the following command:
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--tls-san=$(curl ifconfig.me) --default-runtime=nvidia" sh -
 ```
 
+> [!NOTE]
+> The command `$(curl ifconfig.me)` returns the public IP address of your machine. If you prefer to use a different IP address, you can choose one from any available network interface on your node.
+
 **Flag explanation:**
 
 - `--tls-san`: This flag is mandatory if your K3S server will be accessed via its public IP address.  
