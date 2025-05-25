@@ -56,7 +56,7 @@ chmod 600 ~/.kube/config
 export KUBECONFIG=~/.kube/config
 ```
 
-### Find Your Server Node Token (Used to Set Up the K3S Agent Nodes)
+### Find Your Server Node Token
 
 ```
 sudo cat /var/lib/rancher/k3s/node-token
@@ -75,7 +75,7 @@ curl -sfL https://get.k3s.io | K3S_URL=https://<K3S_SERVER_IP_ADDR>:<K3S_SERVER_
 - For `<K3S_SERVER_IP_ADDR>`, use the same IP address passed to the `--tls-san` flag.
 - If you didn't use `--https-listen-port`, the default API port is `6443`.
 
-### If You Want to Interact with the Cluster from an Agent Node
+### If You Want to Interact with the Cluster from an Agent Node (Not required, but can be helpful)
 
 1. Copy the `~/.kube/config` file from the server to the agent.
 2. Edit the `server:` field (under `clusters -> cluster`) to point to the server's IP or DNS name instead of `127.0.0.1`.
